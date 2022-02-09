@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Live Bidding')
+@section('title', 'Blank')
 
 @section('content')
 
