@@ -14,10 +14,10 @@
 
 <body id="page-top">
     <div id="wrapper">
-        @include('layouts.top_navbar')
+        @include('layouts.side_navbar')
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                @include('layouts.side_navbar')
+                @include('layouts.top_navbar')
                 <div class="container-fluid">
                     @yield('content')
                 </div>
