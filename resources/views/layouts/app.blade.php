@@ -10,6 +10,7 @@
     <link href="{{ asset('assets/fonts/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/img/doge.png') }}" rel="shortcut icon">
 </head>
 
 <body id="page-top">
