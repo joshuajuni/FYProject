@@ -23,21 +23,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-table"></i>
-                    <span>Table</span>
+                <a class="nav-link" href="{{route('session')}}">
+                    <i class="fas fa-calendar"></i>
+                    <span>Session</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="far fa-user-circle"></i>
                     <span>Login</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-user-circle"></i>
-                    <span>Register</span>
+                <a class="nav-link" href="{{route('assessment')}}">
+                    <i class="fas fa-file"></i>
+                    <span>Assessment</span>
                 </a>
             </li>
         </ul>
