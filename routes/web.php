@@ -1,6 +1,8 @@
 <?php
 
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,8 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/session', function () {
-    return view('session');
-})->name('session');
+Route::prefix('/session')->as('session.')->group(function(){
+    Route::get('/', [SessionController::class, 'index'])->name('index');
+});
 
 Route::get('/assessment', function () {return view('assessment');})->name('assessment');

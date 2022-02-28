@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('session')}}">
+                <a class="nav-link" href="{{route('session.index')}}">
                     <i class="fas fa-calendar"></i>
                     <span>Session</span>
                 </a>
