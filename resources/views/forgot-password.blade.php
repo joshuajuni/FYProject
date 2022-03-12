@@ -31,10 +31,6 @@
                                     <form class="user">
                                         <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"></div><button class="btn btn-primary d-block btn-user w-100" type="submit">Reset Password</button>
                                     </form>
-                                    <div class="text-center">
-                                        <hr><a class="small" href="register.html">Create an Account!</a>
-                                    </div>
-                                    <div class="text-center"><a class="small" href="login.html">Already have an account? Login!</a></div>
                                 </div>
                             </div>
                         </div>

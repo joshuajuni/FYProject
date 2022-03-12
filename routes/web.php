@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/test', function () {
-    return view('test');
+    return view('404');
 });
 
 Route::prefix('/session')->as('session.')->group(function(){
