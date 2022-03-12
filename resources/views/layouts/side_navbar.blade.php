@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('profile.index')}}">
                     <i class="fas fa-user"></i>
                     <span>Profile</span>
                 </a>
@@ -35,7 +35,7 @@
                 </a>
             </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('assessment')}}">
+                <a class="nav-link" href="{{route('assessment.index')}}">
                     <i class="fas fa-file"></i>
                     <span>Assessment</span>
                 </a>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +26,10 @@ Route::prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
 });
 
-Route::get('/assessment', function () {return view('assessment');})->name('assessment');
+Route::prefix('/assessment')->as('assessment.')->group(function(){
+    Route::get('/', [AssessmentController::class, 'index'])->name('index');
+});
+
+Route::prefix('/profile')->as('profile.')->group(function(){
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
+});
