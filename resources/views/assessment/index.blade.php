@@ -29,7 +29,11 @@
                             <td>Edinburgh</td>
                             <td>22</td>
                             <td>
-                                <div class="btn-group" role="group"><button class="btn btn-primary" type="button">View</button><button class="btn btn-primary" type="button">Edit</button></div>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-primary" type="button">View</button>
+                                    <button class="btn btn-primary" type="button">Edit</button>
+                                    <button class="btn btn-primary" type="button">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

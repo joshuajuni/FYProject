@@ -11,7 +11,7 @@
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item">
-                <a class="nav-link active" href="">
+                <a class="nav-link active" href="{{route('home')}}">
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -28,16 +28,16 @@
                     <span>Session</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="far fa-user-circle"></i>
-                    <span>Login</span>
-                </a>
-            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('assessment.index')}}">
                     <i class="fas fa-file"></i>
                     <span>Assessment</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="far fa-user-circle"></i>
+                    <span>Management</span>
                 </a>
             </li>
         </ul>

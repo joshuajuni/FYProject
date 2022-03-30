@@ -11,6 +11,7 @@
     <link href="{{ asset('assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/img/doge.png') }}" rel="shortcut icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -34,6 +35,7 @@
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

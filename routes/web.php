@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 Route::get('/test', function () {
     return view('404');
@@ -24,6 +24,9 @@ Route::get('/test', function () {
 
 Route::prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
+    Route::get('/create', [SessionController::class, 'create'])->name('create');
+    Route::get('/view', [SessionController::class, 'view'])->name('view');
+    Route::get('/edit', [SessionController::class, 'edit'])->name('edit');
 });
 
 Route::prefix('/assessment')->as('assessment.')->group(function(){
