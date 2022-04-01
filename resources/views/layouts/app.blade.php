@@ -11,7 +11,6 @@
     <link href="{{ asset('assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/img/doge.png') }}" rel="shortcut icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -21,6 +20,8 @@
             <div id="content">
                 @include('layouts.top_navbar')
                 <div class="container-fluid">
+                    @yield('styles')
+
                     @yield('content')
                 </div>
             </div>
@@ -31,11 +32,14 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/theme.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bs-init.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
+
+    @stack('js')
+
+    @yield('script')
 </body>
 
 </html>

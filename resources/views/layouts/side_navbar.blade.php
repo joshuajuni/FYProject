@@ -1,9 +1,9 @@
 <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
     <div class="container-fluid d-flex flex-column p-0">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-            <div class="sidebar-brand-icon rotate-n-15">
+            <!-- <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
-            </div>
+            </div> -->
             <div class="sidebar-brand-text mx-3">
                 <span>TEST</span>
             </div>
@@ -35,10 +35,34 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1">
                     <i class="far fa-user-circle"></i>
-                    <span>Management</span>
+                    <span>Setting</span>
                 </a>
+                <div class="collapse" id="collapse-1">
+                    <ul class="navbar-nav text-light">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.index')}}">
+                                <span>Admin</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('examiner.index')}}">
+                                <span>Examiner</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('supervisor.index')}}">
+                                <span>Supervisor</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('student.index')}}">
+                                <span>Student</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
         <div class="text-center d-none d-md-inline">

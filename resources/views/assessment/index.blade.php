@@ -5,7 +5,8 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Assessment</h3><button class="btn btn-primary" type="button">Add Assessment</button>
+    <h3 class="text-dark mb-4">Assessment</h3>
+    <button class="btn btn-primary" type="button">Add Assessment</button>
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Assessment Info</p>
@@ -15,19 +16,19 @@
                 <table class="table my-0" id="dataTable">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Venue</th>
-                            <th>Date</th>
-                            <th>Time</th>
+                            <th>Session Title</th>
+                            <th>Student Name</th>
+                            <th>Student Matrix No</th>
+                            <th>Comment</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior JavaScript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>22</td>
+                            <td>Test Title</td>
+                            <td>Test Comment</td>
+                            <td>Test Student</td>
+                            <td>Test Student</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <button class="btn btn-primary" type="button">View</button>

@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-xs-12 col-sm-6">
                         <div class="mb-3">
                         	<label class="form-label" for="venue_type">
                         		<strong>Venue Type</strong>
@@ -57,7 +57,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-xs-12 col-sm-6">
                         <div class="mb-3">
                         	<label class="form-label" for="venue">
                         		<strong>Venue Name / Meeting Link</strong>

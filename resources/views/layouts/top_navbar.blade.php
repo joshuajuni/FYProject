@@ -105,7 +105,7 @@
                         <span class="d-none d-lg-inline me-2 text-gray-600 small">
                             Valerie Luna
                         </span>
-                        <img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg">
+                        <img class="border rounded-circle img-profile" src="{{ asset('assets/img/avatars/avatar1.jpeg') }}">
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="#">
