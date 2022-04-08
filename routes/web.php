@@ -47,7 +47,7 @@ Route::middleware('auth')->prefix('/admin')->as('admin.')->group(function(){
     Route::post('/store', [AdminController::class, 'store'])->name('store');
     Route::get('/view/{admin}', [AdminController::class, 'view'])->name('view');
     Route::get('/edit/{admin}', [AdminController::class, 'edit'])->name('edit');
-    Route::post('/update', [AdminController::class, 'update'])->name('update');
+    Route::post('/update/{admin}', [AdminController::class, 'update'])->name('update');
     Route::get('/destroy/{admin}', [AdminController::class, 'destroy'])->name('destroy');
 });
 

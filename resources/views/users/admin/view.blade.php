@@ -17,19 +17,19 @@
                     <label class="form-label" for="name">
                         <strong>Name</strong>
                     </label>
-                    <input class="form-control" type="text" id="name" name="name" placeholder="{{ $admin->profile->name }}" disabled>
+                    <input class="form-control" type="text" id="name" name="name" value="{{ $admin->profile->name }}" disabled>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="email">
                         <strong>Email</strong>
                     </label>
-                    <input class="form-control" type="text" id="email" name="email" placeholder="{{ $admin->profile->user->email }}" disabled>
+                    <input class="form-control" type="text" id="email" name="email" value="{{ $admin->profile->user->email }}" disabled>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_no">
                         <strong>Phone No.</strong>
                     </label>
-                    <input class="form-control" type="text" id="phone_no" name="phone_no" placeholder="{{ $admin->profile->phone_no }}" disabled>
+                    <input class="form-control" type="text" id="phone_no" name="phone_no" value="{{ $admin->profile->phone_no }}" disabled>
                 </div>
             </form>
         </div>

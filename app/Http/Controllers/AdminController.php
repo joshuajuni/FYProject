@@ -102,9 +102,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Admin $admin)
     {
-        //
+        if ($request->email != $admin->profile->user->email) {
+            $request->validate([
+                    'email' => 'unique:users,email'
+                ]);
+        }
+        $admin->profile->update($request->all());
+        $admin->profile->user->update($request->all());
+        return redirect()->route('admin.index')->with('success', 'Admin updated successfully!');
     }
 
     /**
