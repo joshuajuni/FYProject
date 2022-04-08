@@ -95,9 +95,9 @@
                             </div>
                         </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                     </div>
-                </div> -->
+                </div>
                 <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-            </li>
+            </li> -->
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow">
@@ -108,7 +108,7 @@
                         <img class="border rounded-circle img-profile" src="{{ asset('assets/img/avatars/avatar1.jpeg') }}">
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#">
+                        <!-- <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile
                         </a>
                         <a class="dropdown-item" href="#">
@@ -117,11 +117,17 @@
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" 
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;
                             Logout
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </li>

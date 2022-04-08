@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->string('phone_no');
+            $table->string('phone_no')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,7 +15,7 @@ use Auth;
 |
 */
 
-Route::get('/', function () {
+Route::middleware('auth')->get('/', function () {
     return view('home');
 })->name('home');
 
@@ -23,7 +23,7 @@ Route::get('/test', function () {
     return view('404');
 });
 
-Route::prefix('/session')->as('session.')->group(function(){
+Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
     Route::get('/create', [SessionController::class, 'create'])->name('create');
     Route::post('/store', [SessionController::class, 'store'])->name('store');
@@ -33,25 +33,25 @@ Route::prefix('/session')->as('session.')->group(function(){
     Route::get('/destroy', [SessionController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('/assessment')->as('assessment.')->group(function(){
+Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(function(){
     Route::get('/', [AssessmentController::class, 'index'])->name('index');
 });
 
-Route::prefix('/profile')->as('profile.')->group(function(){
+Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){
     Route::get('/', [ProfileController::class, 'index'])->name('index');
 });
 
-Route::prefix('/admin')->as('admin.')->group(function(){
+Route::middleware('auth')->prefix('/admin')->as('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/create', [AdminController::class, 'create'])->name('create');
     Route::post('/store', [AdminController::class, 'store'])->name('store');
-    Route::get('/view', [AdminController::class, 'view'])->name('view');
-    Route::get('/edit', [AdminController::class, 'edit'])->name('edit');
+    Route::get('/view/{admin}', [AdminController::class, 'view'])->name('view');
+    Route::get('/edit/{admin}', [AdminController::class, 'edit'])->name('edit');
     Route::post('/update', [AdminController::class, 'update'])->name('update');
-    Route::get('/destroy', [AdminController::class, 'destroy'])->name('destroy');
+    Route::get('/destroy/{admin}', [AdminController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('/examiner')->as('examiner.')->group(function(){
+Route::middleware('auth')->prefix('/examiner')->as('examiner.')->group(function(){
     Route::get('/', [ExaminerController::class, 'index'])->name('index');
     Route::get('/create', [ExaminerController::class, 'create'])->name('create');
     Route::post('/store', [ExaminerController::class, 'store'])->name('store');
@@ -61,7 +61,7 @@ Route::prefix('/examiner')->as('examiner.')->group(function(){
     Route::get('/destroy', [ExaminerController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('/supervisor')->as('supervisor.')->group(function(){
+Route::middleware('auth')->prefix('/supervisor')->as('supervisor.')->group(function(){
     Route::get('/', [SupervisorController::class, 'index'])->name('index');
     Route::get('/create', [SupervisorController::class, 'create'])->name('create');
     Route::post('/store', [SupervisorController::class, 'store'])->name('store');
@@ -71,7 +71,7 @@ Route::prefix('/supervisor')->as('supervisor.')->group(function(){
     Route::get('/destroy', [SupervisorController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('/student')->as('student.')->group(function(){
+Route::middleware('auth')->prefix('/student')->as('student.')->group(function(){
     Route::get('/', [StudentController::class, 'index'])->name('index');
     Route::get('/create', [StudentController::class, 'create'])->name('create');
     Route::post('/store', [StudentController::class, 'store'])->name('store');
@@ -83,4 +83,4 @@ Route::prefix('/student')->as('student.')->group(function(){
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->get('/home', [HomeController::class, 'index'])->name('home');

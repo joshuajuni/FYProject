@@ -17,19 +17,19 @@
                     <label class="form-label" for="name">
                         <strong>Name</strong>
                     </label>
-                    <input class="form-control" type="text" id="name" name="name">
+                    <input class="form-control" type="text" id="name" name="name" placeholder="{{ $admin->profile->name }}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="email">
                         <strong>Email</strong>
                     </label>
-                    <input class="form-control" type="text" id="email" name="email">
+                    <input class="form-control" type="text" id="email" placeholder="{{ $admin->profile->user->email }}" name="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_no">
                         <strong>Phone No.</strong>
                     </label>
-                    <input class="form-control" type="text" id="phone_no" name="phone_no">
+                    <input class="form-control" type="text" id="phone_no" placeholder="{{ $admin->profile->phone_no }}" name="phone_no">
                 </div>
                 <div class="mb-3">
                 	<button class="btn btn-primary btn-sm" type="submit">Save</button>
