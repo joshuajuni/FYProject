@@ -20,10 +20,16 @@
                     <input class="form-control" type="text" id="name" name="name" value="{{ $admin->profile->name }}" disabled>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="username">
+                        <strong>Username</strong>
+                    </label>
+                    <input class="form-control" type="text" id="username" name="username" value="{{ $admin->profile->user->username }}" disabled>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="email">
                         <strong>Email</strong>
                     </label>
-                    <input class="form-control" type="text" id="email" name="email" value="{{ $admin->profile->user->email }}" disabled>
+                    <input class="form-control" type="email" id="email" name="email" value="{{ $admin->profile->user->email }}" disabled>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_no">

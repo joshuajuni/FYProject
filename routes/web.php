@@ -55,30 +55,30 @@ Route::middleware('auth')->prefix('/examiner')->as('examiner.')->group(function(
     Route::get('/', [ExaminerController::class, 'index'])->name('index');
     Route::get('/create', [ExaminerController::class, 'create'])->name('create');
     Route::post('/store', [ExaminerController::class, 'store'])->name('store');
-    Route::get('/view', [ExaminerController::class, 'view'])->name('view');
-    Route::get('/edit', [ExaminerController::class, 'edit'])->name('edit');
-    Route::post('/update', [ExaminerController::class, 'update'])->name('update');
-    Route::get('/destroy', [ExaminerController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{examiner}', [ExaminerController::class, 'view'])->name('view');
+    Route::get('/edit/{examiner}', [ExaminerController::class, 'edit'])->name('edit');
+    Route::post('/update/{examiner}', [ExaminerController::class, 'update'])->name('update');
+    Route::get('/destroy/{examiner}', [ExaminerController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->prefix('/supervisor')->as('supervisor.')->group(function(){
     Route::get('/', [SupervisorController::class, 'index'])->name('index');
     Route::get('/create', [SupervisorController::class, 'create'])->name('create');
     Route::post('/store', [SupervisorController::class, 'store'])->name('store');
-    Route::get('/view', [SupervisorController::class, 'view'])->name('view');
-    Route::get('/edit', [SupervisorController::class, 'edit'])->name('edit');
-    Route::post('/update', [SupervisorController::class, 'update'])->name('update');
-    Route::get('/destroy', [SupervisorController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{supervisor}', [SupervisorController::class, 'view'])->name('view');
+    Route::get('/edit/{supervisor}', [SupervisorController::class, 'edit'])->name('edit');
+    Route::post('/update/{supervisor}', [SupervisorController::class, 'update'])->name('update');
+    Route::get('/destroy/{supervisor}', [SupervisorController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->prefix('/student')->as('student.')->group(function(){
     Route::get('/', [StudentController::class, 'index'])->name('index');
     Route::get('/create', [StudentController::class, 'create'])->name('create');
     Route::post('/store', [StudentController::class, 'store'])->name('store');
-    Route::get('/view', [StudentController::class, 'view'])->name('view');
-    Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
-    Route::post('/update', [StudentController::class, 'update'])->name('update');
-    Route::get('/destroy', [StudentController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{student}', [StudentController::class, 'view'])->name('view');
+    Route::get('/edit/{student}', [StudentController::class, 'edit'])->name('edit');
+    Route::post('/update/{student}', [StudentController::class, 'update'])->name('update');
+    Route::get('/destroy/{student}', [StudentController::class, 'destroy'])->name('destroy');
 });
 
 Auth::routes();

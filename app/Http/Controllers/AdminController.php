@@ -109,6 +109,7 @@ class AdminController extends Controller
                     'email' => 'unique:users,email'
                 ]);
         }
+        $admin->update($request->all());
         $admin->profile->update($request->all());
         $admin->profile->user->update($request->all());
         return redirect()->route('admin.index')->with('success', 'Admin updated successfully!');
@@ -123,6 +124,6 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         $admin->delete();
-        return redirect()->back()->with('success', 'Admin deleted successfully!');;
+        return redirect()->back()->with('success', 'Admin deleted successfully!');
     }
 }

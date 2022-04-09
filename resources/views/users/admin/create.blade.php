@@ -44,7 +44,7 @@
                 	<label class="form-label" for="email">
                 		<strong>Email</strong>
                 	</label>
-                	<input class="form-control" type="text" id="email" name="email">
+                	<input class="form-control" type="email" id="email" name="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">

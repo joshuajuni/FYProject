@@ -34,6 +34,6 @@ class Profile extends Model
     }
 
     public function student() {
-        return $this->hasOne('App\Models\Supervisor');
+        return $this->hasOne('App\Models\Student');
     }
 }

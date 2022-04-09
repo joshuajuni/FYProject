@@ -38,7 +38,7 @@
                     <label class="form-label" for="email">
                         <strong>Email</strong>
                     </label>
-                    <input class="form-control" type="text" id="email" value="{{ $admin->profile->user->email }}" name="email">
+                    <input class="form-control" type="email" id="email" value="{{ $admin->profile->user->email }}" name="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="phone_no">
