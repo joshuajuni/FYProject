@@ -27,10 +27,10 @@ Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
     Route::get('/create', [SessionController::class, 'create'])->name('create');
     Route::post('/store', [SessionController::class, 'store'])->name('store');
-    Route::get('/view', [SessionController::class, 'view'])->name('view');
-    Route::get('/edit', [SessionController::class, 'edit'])->name('edit');
-    Route::post('/update', [SessionController::class, 'update'])->name('update');
-    Route::get('/destroy', [SessionController::class, 'destroy'])->name('destroy');
+    Route::get('/view/{session}', [SessionController::class, 'view'])->name('view');
+    Route::get('/edit/{session}', [SessionController::class, 'edit'])->name('edit');
+    Route::post('/update/{session}', [SessionController::class, 'update'])->name('update');
+    Route::get('/destroy/{session}', [SessionController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(function(){

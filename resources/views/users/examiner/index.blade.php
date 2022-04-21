@@ -44,7 +44,7 @@
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"
                                         data-bs-name="{{$row->profile->name}}"
-                                        data-bs-link="{{route('examiner.destroy',$row->profile->examiner)}}"
+                                        data-bs-link="{{route('examiner.destroy',$row)}}"
                                     >
                                         Delete
                                     </a>

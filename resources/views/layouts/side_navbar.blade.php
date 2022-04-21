@@ -17,12 +17,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('profile.index')}}">
-                    <i class="fas fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{{route('session.index')}}">
                     <i class="fas fa-calendar"></i>
                     <span>Session</span>
@@ -34,6 +28,7 @@
                     <span>Assessment</span>
                 </a>
             </li>
+            @if (isset(Auth::user()->profile->admin))
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1">
                     <i class="far fa-user-circle"></i>
@@ -64,6 +59,7 @@
                     </ul>
                 </div>
             </li>
+            @endif
         </ul>
         <div class="text-center d-none d-md-inline">
             <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>

@@ -3,41 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Session;
+use App\Models\Student;
+use App\Models\Examiner;
+use Auth;
 
 class SessionController extends Controller
 {
     public function index()
     {
-        return view('session.index');
+        $sessions = Session::all();
+        return view('session.index')->with('sessions', $sessions);
     }
 
     public function create()
     {
-        return view('session.create');
+        $students = Student::all();
+        $examiners = Examiner::all();
+        return view('session.create')->with('students', $students)->with('examiners', $examiners);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        //
+        // return $request;
+        $request->merge(['created_by' => Auth::user()->id]);
+        Session::create($request->all());
+        return redirect()->route('session.index')->with('success', 'Session created successfully!');
     }
 
-    public function view()
+    public function view(Session $session)
     {
-        return view('session.view');
+        return view('session.view')->with('session', $session);
     }
 
-    public function edit()
+    public function edit(Session $session)
     {
-        return view('session.edit');
+        $students = Student::all();
+        $examiners = Examiner::all();
+        return view('session.edit')->with('students', $students)->with('examiners', $examiners)->with('session', $session);
     }
 
-    public function update()
+    public function update(Request $request, Session $session)
     {
-        //
+        $session->update($request->all());
+        return redirect()->route('session.index')->with('success', 'Session updated successfully!');
     }
 
-    public function destroy()
+    public function destroy(Session $session)
     {
-        //
+        $session->delete();
+        return redirect()->back()->with('success', 'Session deleted successfully!');
     }
 }
