@@ -50,7 +50,6 @@
                                     >
                                         Delete
                                     </a>
-                                    <a class="btn btn-primary" href="" role="button">Add Assessment</a>
                                 </div>
                             </td>
                         </tr>

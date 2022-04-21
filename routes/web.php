@@ -35,6 +35,12 @@ Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
 
 Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(function(){
     Route::get('/', [AssessmentController::class, 'index'])->name('index');
+    Route::get('/create/{session}', [AssessmentController::class, 'create'])->name('create');
+    Route::post('/store', [AssessmentController::class, 'store'])->name('store');
+    Route::get('/view/{assessment}', [AssessmentController::class, 'view'])->name('view');
+    Route::get('/edit/{assessment}', [AssessmentController::class, 'edit'])->name('edit');
+    Route::post('/update/{assessment}', [AssessmentController::class, 'update'])->name('update');
+    Route::get('/destroy/{assessment}', [AssessmentController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){

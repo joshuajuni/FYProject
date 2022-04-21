@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('student_id');
+            // $table->unsignedInteger('student_id');
             $table->unsignedInteger('examiner_id');
             $table->unsignedInteger('session_id');
             $table->string('comments');

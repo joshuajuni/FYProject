@@ -25,7 +25,7 @@ class Session extends Model
 
     public function assessment()
     {
-        return $this->hasOne('App\Models\Assessment');
+        return $this->hasMany('App\Models\Assessment');
     }
 
     public function student()
