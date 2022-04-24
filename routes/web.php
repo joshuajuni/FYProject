@@ -20,7 +20,7 @@ Route::middleware('auth')->get('/', function () {
 })->name('home');
 
 Route::get('/test', function () {
-    return view('404');
+    return view('403');
 });
 
 Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
@@ -41,6 +41,7 @@ Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(funct
     Route::get('/edit/{assessment}', [AssessmentController::class, 'edit'])->name('edit');
     Route::post('/update/{assessment}', [AssessmentController::class, 'update'])->name('update');
     Route::get('/destroy/{assessment}', [AssessmentController::class, 'destroy'])->name('destroy');
+    Route::get('/generate/{session}', [AssessmentController::class, 'generate'])->name('generate');
 });
 
 Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){

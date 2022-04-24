@@ -22,9 +22,6 @@
         </div>
     @endif
     <a class="btn btn-primary" href="{{route('session.edit', $session)}}" role="button">Edit Session</a>
-    @if ( $session->examiner1 == Auth::user()->profile->examiner || $session->examiner2 == Auth::user()->profile->examiner)
-    <a class="btn btn-primary" href="{{route('assessment.create',$session)}}" role="button">Add Assessment</a>
-    @endif
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session Info</p>
@@ -121,6 +118,12 @@
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session's Assessment</p>
+                @if ( ($session->examiner1->id == Auth::user()->profile->examiner->id || $session->examiner2->id == Auth::user()->profile->examiner->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id))
+                <a class="btn btn-primary" href="{{route('assessment.create',$session)}}" role="button">Add Assessment</a>
+                @endif
+                <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$session)}}">
+                    <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Assessment PDF
+                </a>
         </div>
         <div class="card-body">
             @if(count($session->assessment)>0)
@@ -141,6 +144,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('assessment.view',$row)}}" role="button">View</a>
+                                    @if ( $row->examiner->id == Auth::user()->profile->examiner->id)
                                     <a class="btn btn-primary" href="{{route('assessment.edit',$row)}}" role="button">Edit</a>
                                     <a role="button" class="btn btn-primary"
                                         data-bs-toggle="modal"
@@ -150,6 +154,7 @@
                                     >
                                         Delete
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

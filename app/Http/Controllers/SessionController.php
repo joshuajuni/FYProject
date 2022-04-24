@@ -33,7 +33,9 @@ class SessionController extends Controller
 
     public function view(Session $session)
     {
-        return view('session.view')->with('session', $session);
+        $examinerIDs = $session->assessment->pluck('examiner_id'); //id of examiner that has done assessment
+        // return $examinerIDs;
+        return view('session.view')->with('session', $session)->with('examinerIDs', $examinerIDs);
     }
 
     public function edit(Session $session)

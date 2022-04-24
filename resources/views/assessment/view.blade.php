@@ -21,31 +21,21 @@
             </ul>
         </div>
     @endif
+    @if ( $assessment->examiner->id == Auth::user()->profile->examiner->id)
     <a class="btn btn-primary" href="{{route('assessment.edit', $assessment)}}" role="button">Edit Assessment</a>
+    @endif
     <div class="card shadow">
         <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Session Info</p>
+            <p class="text-primary m-0 fw-bold">Assessment Info</p>
         </div>
         <div class="card-body">
             <form method="POST" action="">
             @csrf
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="student_name">
-                                <strong>Student Name</strong>
-                            </label>
-                            <input class="form-control" type="text" id="student_name" name="student_name" value="{{ $assessment->session->student->profile->name}}" disabled>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="student_matrix_no">
-                                <strong>Student Matrix No.</strong>
-                            </label>
-                            <input class="form-control" type="text" id="student_matrix_no" name="student_matrix_no" value="{{ $assessment->session->student->profile->user->username}}" disabled>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label" for="examiner_name">
+                        <strong>Examiner Name</strong>
+                    </label>
+                    <input class="form-control" type="text" id="examiner_name" name="examiner_name" value="{{ $assessment->examiner->profile->name}}" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="comments" class="form-label">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Assessment;
 use App\Models\Session;
 use Auth;
+use PDF;
 
 class AssessmentController extends Controller
 {
@@ -24,12 +25,21 @@ class AssessmentController extends Controller
     {
         // return $request;
         Assessment::create($request->all());
-        return redirect()->route('session.view', $request->session_id )->with('success', 'Session created successfully!');
+        return redirect()->route('session.view', $request->session_id )->with('success', 'Assessment created successfully!');
     }
 
     public function view(Assessment $assessment)
     {
         return view('assessment.view')->with('assessment', $assessment);
+    }
+
+    public function generate(Session $session)
+    {
+            $view = view('assessment.generate')->with('session', $session);
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('assessment.pdf');
+        // return view('assessment.generate')->with('session', $session);
     }
 
     public function edit(Assessment $assessment)
