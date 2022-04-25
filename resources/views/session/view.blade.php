@@ -118,7 +118,7 @@
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session's Assessment</p>
-                @if ( ($session->examiner1->id == Auth::user()->profile->examiner->id || $session->examiner2->id == Auth::user()->profile->examiner->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id))
+                @if ( ($session->examiner1->profile->user->id == Auth::user()->id || $session->examiner2->profile->user->id == Auth::user()->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id))
                 <a class="btn btn-primary" href="{{route('assessment.create',$session)}}" role="button">Add Assessment</a>
                 @endif
                 <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$session)}}">
@@ -140,7 +140,7 @@
                         @foreach ($session->assessment as $row)
                         <tr>
                             <td>{{ $row->examiner->profile->name }}</td>
-                            <td>{{ $row->comments }}</td>
+                            <td>{!! $row->comments !!}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('assessment.view',$row)}}" role="button">View</a>

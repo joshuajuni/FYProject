@@ -45,7 +45,7 @@
                             <label class="form-label" for="examiner1_id">
                                 <strong>Examiner 1</strong>
                             </label>
-                            <select id="examiner1_id" class="form-select" name="examiner1_id" onchange="myFunction(this.value)" required>
+                            <select id="examiner1_id" class="form-select" name="examiner1_id" required>
                                 <option selected disabled value="">--Select--</option>
                                 @foreach($examiners as $row)
                                 <option value="{{ $row->id }}">{{ $row->profile->name }}</option>
@@ -58,7 +58,7 @@
                             <label class="form-label" for="examiner2_id">
                                 <strong>Examiner 2</strong>
                             </label>
-                            <select id="examiner2_id" class="form-select" name="examiner2_id" onchange="myFunction(this.value)" required>
+                            <select id="examiner2_id" class="form-select" name="examiner2_id" required>
                                 <option selected disabled value="">--Select--</option>
                                 @foreach($examiners as $row)
                                 <option value="{{ $row->id }}">{{ $row->profile->name }}</option>
@@ -128,28 +128,3 @@
 </div>
 
 @endsection
-@section('script')
-
-    <script type="text/javascript">
-        function myFunction(val) {
-            document.querySelectorAll("#examiner1_id option").forEach(opt => {
-                if (opt.value == val) {
-                    opt.disabled = true;
-                }
-                else{
-                    opt.disabled = false;
-                }
-            });
-            document.querySelectorAll("#examiner2_id option").forEach(opt => {
-                if (opt.value == val) {
-                    opt.disabled = true;
-                }
-                else{
-                    opt.disabled = false;
-                }
-            });
-        }
-    </script>
-
-@endsection
-

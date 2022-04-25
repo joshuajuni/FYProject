@@ -36,6 +36,7 @@
     <script src="{{ asset('assets/js/chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/bs-init.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
     @stack('js')
 

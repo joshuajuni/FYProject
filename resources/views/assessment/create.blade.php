@@ -54,7 +54,7 @@
                     <label for="comments" class="form-label">
                         <strong>Comments</strong>
                     </label>
-                    <textarea class="form-control" id="comments" name="comments"  rows="5" required></textarea>
+                    <textarea class="ckeditor form-control" id="comments" name="comments" required></textarea>
                 </div>
                 <div class="mb-3">
                 	<button class="btn btn-primary btn-sm" type="submit">Save</button>

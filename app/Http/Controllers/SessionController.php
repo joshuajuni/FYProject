@@ -26,6 +26,9 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         // return $request;
+        if ($request->examiner1_id == $request->examiner2_id) {
+            return back()->withErrors(['msg' => 'Examiner 1 and Examiner 2 cannot be the same']);
+        }
         $request->merge(['created_by' => Auth::user()->id]);
         Session::create($request->all());
         return redirect()->route('session.index')->with('success', 'Session created successfully!');
