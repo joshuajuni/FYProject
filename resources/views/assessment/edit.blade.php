@@ -50,7 +50,7 @@
                     <label for="comments" class="form-label">
                         <strong>Comments</strong>
                     </label>
-                    <textarea class="form-control" id="comments" name="comments"  rows="5" required>{{ $assessment->comments }}</textarea>
+                    <textarea class="ckeditor form-control" id="comments" name="comments" required>{{ $assessment->comments }}</textarea>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary btn-sm" type="submit">Save</button>

@@ -41,7 +41,7 @@
                     <label for="comments" class="form-label">
                         <strong>Comments</strong>
                     </label>
-                    <textarea class="form-control" id="comments" name="comments"  rows="5" disabled>{{ $assessment->comments }}</textarea>
+                    <textarea class="ckeditor form-control" id="comments" name="comments" disabled>{!! $assessment->comments !!}</textarea>
                 </div>
             </form>
         </div>
