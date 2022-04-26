@@ -144,7 +144,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('assessment.view',$row)}}" role="button">View</a>
-                                    @if ( $row->examiner->id == Auth::user()->profile->examiner->id)
+                                    @if ( $row->examiner->profile->user->id == Auth::user()->id)
                                     <a class="btn btn-primary" href="{{route('assessment.edit',$row)}}" role="button">Edit</a>
                                     <a role="button" class="btn btn-primary"
                                         data-bs-toggle="modal"

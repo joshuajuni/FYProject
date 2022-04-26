@@ -23,6 +23,8 @@ Route::get('/test', function () {
     return view('403');
 });
 
+Route::get('/send-reminder/{session}', [NotificationController::class, 'sendReminder']);
+
 Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
     Route::get('/create', [SessionController::class, 'create'])->name('create');
