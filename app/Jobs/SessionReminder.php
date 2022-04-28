@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Models\Session;
 use Notification;
-use App\Notifications\SessionNotification;
+use App\Notifications\SessionReminderNotification;
 use Carbon\Carbon;
 
 class SessionReminder implements ShouldQueue
@@ -38,7 +38,7 @@ class SessionReminder implements ShouldQueue
         $sessions = Session::where('date', '>=', Carbon::today())->get();
 
         foreach ($sessions as $session) {
-            if ($session->date == Carbon::today()->toDateString() || $session->date == Carbon::today()->addDay()->toDateString() || $session->date == Carbon::today()->addWeek()->toDateString() ) {
+            if ( $session->date == Carbon::today()->toDateString() ) {
                 $users = [
                     $session->student->profile->user,
                     $session->student->supervisor->profile->user,
@@ -47,10 +47,43 @@ class SessionReminder implements ShouldQueue
                 ];
 
                 $sessionData = [
+                    'body'  => 'Your session is scheduled today.',
                     'url'   => url('session/view', $session->id)
                 ];
                 foreach ($users as $user) {
-                   Notification::send($user, new SessionNotification($sessionData));
+                   Notification::send($user, new SessionReminderNotification($sessionData));
+                }
+            }
+            elseif ( $session->date == Carbon::today()->addDay()->toDateString() ) {
+                $users = [
+                    $session->student->profile->user,
+                    $session->student->supervisor->profile->user,
+                    $session->examiner1->profile->user,
+                    $session->examiner2->profile->user,
+                ];
+
+                $sessionData = [
+                    'body'  => 'Your session is scheduled tommorrow.',
+                    'url'   => url('session/view', $session->id)
+                ];
+                foreach ($users as $user) {
+                   Notification::send($user, new SessionReminderNotification($sessionData));
+                }
+            }
+            elseif ( $session->date == Carbon::today()->addWeek()->toDateString()) {
+                $users = [
+                    $session->student->profile->user,
+                    $session->student->supervisor->profile->user,
+                    $session->examiner1->profile->user,
+                    $session->examiner2->profile->user,
+                ];
+
+                $sessionData = [
+                    'body'  => 'Your session is scheduled next week.',
+                    'url'   => url('session/view', $session->id)
+                ];
+                foreach ($users as $user) {
+                   Notification::send($user, new SessionReminderNotification($sessionData));
                 }
             }
         }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SessionNotification extends Notification
+class SessionUpdateNotification extends Notification
 {
     use Queueable;
 
@@ -41,8 +41,9 @@ class SessionNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Session Reminder')
-                    ->line('Reminder for your upcoming session.')
+                    ->subject('Session Update')
+                    ->line('Your upcoming session has been updated')
+                    ->line($this->sessionData['title'])
                     ->action('View Session details', $this->sessionData['url'])
                     ->line('Looking forward to see you!');
     }

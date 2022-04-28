@@ -7,6 +7,9 @@ use App\Models\Session;
 use App\Models\Student;
 use App\Models\Examiner;
 use Auth;
+use Notification;
+use App\Notifications\NewSessionNotification;
+use App\Notifications\SessionUpdateNotification;
 
 class SessionController extends Controller
 {
@@ -30,7 +33,23 @@ class SessionController extends Controller
             return back()->withErrors(['msg' => 'Examiner 1 and Examiner 2 cannot be the same']);
         }
         $request->merge(['created_by' => Auth::user()->id]);
-        Session::create($request->all());
+        $session = Session::create($request->all());
+
+        $users = [
+            $session->student->profile->user,
+            $session->student->supervisor->profile->user,
+            $session->examiner1->profile->user,
+            $session->examiner2->profile->user,
+        ];
+
+        $sessionData = [
+            'title'     => $session->title,
+            'url'       => url('session/view', $session->id)
+        ];
+        foreach ($users as $user) {
+           Notification::send($user, new NewSessionNotification($sessionData));
+        }
+
         return redirect()->route('session.index')->with('success', 'Session created successfully!');
     }
 
@@ -51,6 +70,21 @@ class SessionController extends Controller
     public function update(Request $request, Session $session)
     {
         $session->update($request->all());
+
+        $users = [
+            $session->student->profile->user,
+            $session->student->supervisor->profile->user,
+            $session->examiner1->profile->user,
+            $session->examiner2->profile->user,
+        ];
+
+        $sessionData = [
+            'title'     => $session->title,
+            'url'       => url('session/view', $session->id)
+        ];
+        foreach ($users as $user) {
+           Notification::send($user, new SessionUpdateNotification($sessionData));
+        }
         return redirect()->route('session.index')->with('success', 'Session updated successfully!');
     }
 
