@@ -16,7 +16,7 @@ class SessionController extends Controller
     public function index()
     {
         if (isset(Auth::user()->profile->admin)) {
-            $sessions = Session::all()->sortBy('date');
+            $sessions = Session::all()->sortByDesc('date');
         }
         elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');

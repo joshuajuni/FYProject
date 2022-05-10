@@ -20,8 +20,14 @@ class SupervisorController extends Controller
      */
     public function index()
     {
-        $supervisors = Supervisor::paginate(20);
+        $supervisors = Supervisor::where('is_active', true)->paginate(10);
         return view('users.supervisor.index')->with('supervisors', $supervisors);
+    }
+
+    public function indexInactive()
+    {
+        $supervisors = Supervisor::where('is_active', false)->paginate(10);
+        return view('users.supervisor.indexInactive')->with('supervisors', $supervisors);
     }
 
     /**

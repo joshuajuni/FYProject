@@ -19,8 +19,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::paginate(20);
+        $admins = Admin::where('is_active', true)->paginate(20);
         return view('users.admin.index')->with('admins', $admins);
+    }
+
+    public function indexInactive()
+    {
+        $admins = Admin::where('is_active', false)->paginate(20);
+        return view('users.admin.indexInactive')->with('admins', $admins);
     }
 
     /**

@@ -21,11 +21,21 @@ class StudentController extends Controller
     public function index()
     {
         if (isset(Auth::user()->profile->supervisor)) {
-            $students = Student::where('supervisor_id', Auth::user()->profile->supervisor->id)->paginate(20);
+            $students = Student::where('supervisor_id', Auth::user()->profile->supervisor->id)->where('is_active', true)->paginate(10);
         }else{
-            $students = Student::paginate(20);
+            $students = Student::where('is_active', true)->paginate(10);
         }
         return view('users.student.index')->with('students', $students);
+    }
+
+    public function indexInactive()
+    {
+        if (isset(Auth::user()->profile->supervisor)) {
+            $students = Student::where('supervisor_id', Auth::user()->profile->supervisor->id)->where('is_active', false)->paginate(10);
+        }else{
+            $students = Student::where('is_active', false)->paginate(10);
+        }
+        return view('users.student.indexInactive')->with('students', $students);
     }
 
     /**

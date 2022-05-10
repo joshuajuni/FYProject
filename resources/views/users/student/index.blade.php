@@ -20,6 +20,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <p class="text-primary m-0 fw-bold">Student Listing</p>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success" role="button" disabled>Active</a>
+                        <a class="btn btn-outline-danger" href="{{route('student.indexInactive')}}" role="button">Inactive</a>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <input class="form-control" id="myInput" type="text" placeholder="Search..">

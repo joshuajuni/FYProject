@@ -15,7 +15,8 @@
                             <p class="text-primary m-0 fw-bold">User Details</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="POST" action="{{route('profile.update')}}">
+                            @csrf
                                 <div class="mb-3">
                                     <label class="form-label" for="name">
                                         <strong>Name</strong>
@@ -32,7 +33,7 @@
                                     <label class="form-label" for="phone_no">
                                         <strong>Phone No.</strong>
                                     </label>
-                                    <input class="form-control" type="phone_no" id="phone_no" placeholder="{{ Auth::user()->profile->phone_no }}" name="phone_no" disabled>
+                                    <input class="form-control" type="phone_no" id="phone_no" value="{{ Auth::user()->profile->phone_no }}" name="phone_no">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="username">
@@ -44,7 +45,9 @@
                                     </label>
                                     <input class="form-control" type="text" id="username" placeholder="{{ Auth::user()->username }}" name="username" disabled>
                                 </div>
-                                <!-- <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div> -->
+                                <div class="mb-3">
+                                    <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                                </div>
                             </form>
                         </div>
                     </div>

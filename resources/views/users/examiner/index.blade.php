@@ -15,16 +15,18 @@
     <a class="btn btn-primary" href="{{route('examiner.create')}}" role="button">Add Examiner</a>
     <div class="card shadow">
         <div class="card-header py-3">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-primary m-0 fw-bold">Examiner Listing</p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-primary m-0 fw-bold">Examiner Listing</p>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success" role="button" disabled>Active</a>
+                        <a class="btn btn-outline-danger" href="{{route('examiner.indexInactive')}}" role="button">Inactive</a>
                     </div>
                 </div>
-            <div> 
+                <div class="col-md-6">
+                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">

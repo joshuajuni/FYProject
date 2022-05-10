@@ -16,6 +16,7 @@ use Auth;
 */
 
 Route::middleware('auth')->get('/',  [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->get('/home',  [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->get('/test', function () {
     return view('403');
@@ -46,10 +47,13 @@ Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(funct
 
 Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){
     Route::get('/', [ProfileController::class, 'index'])->name('index');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+    Route::post('/update', [ProfileController::class, 'update'])->name('update');
 });
 
 Route::middleware('auth', 'admin')->prefix('/admin')->as('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/inactive', [AdminController::class, 'indexInactive'])->name('indexInactive');
     Route::get('/create', [AdminController::class, 'create'])->name('create');
     Route::post('/store', [AdminController::class, 'store'])->name('store');
     Route::get('/view/{admin}', [AdminController::class, 'view'])->name('view');
@@ -61,6 +65,7 @@ Route::middleware('auth', 'admin')->prefix('/admin')->as('admin.')->group(functi
 
 Route::middleware('auth', 'admin')->prefix('/examiner')->as('examiner.')->group(function(){
     Route::get('/', [ExaminerController::class, 'index'])->name('index');
+    Route::get('/inactive', [ExaminerController::class, 'indexInactive'])->name('indexInactive');
     Route::get('/create', [ExaminerController::class, 'create'])->name('create');
     Route::post('/store', [ExaminerController::class, 'store'])->name('store');
     Route::get('/view/{examiner}', [ExaminerController::class, 'view'])->name('view');
@@ -72,6 +77,7 @@ Route::middleware('auth', 'admin')->prefix('/examiner')->as('examiner.')->group(
 
 Route::middleware('auth', 'admin')->prefix('/supervisor')->as('supervisor.')->group(function(){
     Route::get('/', [SupervisorController::class, 'index'])->name('index');
+    Route::get('/inactive', [SupervisorController::class, 'indexInactive'])->name('indexInactive');
     Route::get('/create', [SupervisorController::class, 'create'])->name('create');
     Route::post('/store', [SupervisorController::class, 'store'])->name('store');
     Route::get('/view/{supervisor}', [SupervisorController::class, 'view'])->name('view');
@@ -83,6 +89,7 @@ Route::middleware('auth', 'admin')->prefix('/supervisor')->as('supervisor.')->gr
 
 Route::middleware('auth', 'adminOrSupervisor')->prefix('/student')->as('student.')->group(function(){
     Route::get('/', [StudentController::class, 'index'])->name('index');
+    Route::get('/inactive', [StudentController::class, 'indexInactive'])->name('indexInactive');
     Route::middleware('admin')->get('/create', [StudentController::class, 'create'])->name('create');
     Route::middleware('admin')->post('/store', [StudentController::class, 'store'])->name('store');
     Route::get('/view/{student}', [StudentController::class, 'view'])->name('view');

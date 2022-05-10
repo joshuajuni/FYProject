@@ -1,32 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'Supervisor Listing')
+@section('title', 'Student Listing')
 
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Supervisor</h3>
+    <h3 class="text-dark mb-4">Student</h3>
     @if (Session::has('error'))
         <div class="alert alert-danger" role="alert">{{ Session::get('error', '') }}</div>
     @endif
     @if (Session::has('success'))
         <div class="alert alert-success" role="alert">{{ Session::get('success', '') }}</div>
     @endif
-    <a class="btn btn-primary" href="{{route('supervisor.create')}}" role="button">Add Supervisor</a>
+    @if (isset(Auth::user()->profile->admin))
+    <a class="btn btn-primary" href="{{route('student.create')}}" role="button">Add Student</a>
+    @endif
     <div class="card shadow">
-        <div class="card-header py-3"> 
+        <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="text-primary m-0 fw-bold">Supervisor Listing</p>
+                    <p class="text-primary m-0 fw-bold">Student Listing</p>
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success" role="button" disabled>Active</a>
-                        <a class="btn btn-outline-danger" href="{{route('supervisor.indexInactive')}}" role="button">Inactive</a>
+                        <a class="btn btn-outline-success" href="{{route('student.index')}}" role="button">Active</a>
+                        <a class="btn btn-danger" role="button" disabled>Inactive</a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <input class="form-control" id="myInput" type="text" placeholder="Search..">
                 </div>
-            </div> 
+            </div>  
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -34,20 +36,20 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Username</th>
+                            <th>Matrix No.</th>
                             <th>Email</th>
-                            <th>Phone No</th>
+                            <th>Supervisor</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
-                        @foreach($supervisors as $row)
+                        @foreach($students as $row)
                         <tr>
                             <td>{{ $row->profile->name }}</td>
                             <td>{{ $row->profile->user->username }}</td>
                             <td>{{ $row->profile->user->email }}</td>
-                            <td>{{ $row->profile->phone_no }}</td>
+                            <td>{{ $row->supervisor->profile->name }}</td>
                             <td>
                                 @if($row->is_active == true)
                                     <span class="badge bg-success">Active</span>
@@ -57,19 +59,21 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-primary" href="{{route('supervisor.view',$row->profile->supervisor)}}" role="button">View</a>
-                                    <a class="btn btn-primary" href="{{route('supervisor.edit',$row->profile->supervisor)}}" role="button">Edit</a>
+                                    <a class="btn btn-primary" href="{{route('student.view',$row->profile->student)}}" role="button">View</a>
+                                    @if (isset(Auth::user()->profile->admin))
+                                    <a class="btn btn-primary" href="{{route('student.edit',$row->profile->student)}}" role="button">Edit</a>
                                     @if($row->is_active == true)
                                     <a role="button" class="btn btn-danger"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"
                                         data-bs-name="{{$row->profile->name}}"
-                                        data-bs-link="{{route('supervisor.destroy',$row)}}"
+                                        data-bs-link="{{route('student.destroy',$row)}}"
                                     >
                                         Deactivate
                                     </a>
                                     @elseif($row->is_active == false)
-                                    <a class="btn btn-success" href="{{route('supervisor.makeActive',$row)}}" role="button">Make active</a>
+                                    <a class="btn btn-success" href="{{route('student.makeActive',$row)}}" role="button">Make active</a>
+                                    @endif
                                     @endif
                                 </div>
                             </td>
@@ -87,7 +91,7 @@
                 </div>
                 <div class="col-md-6">
                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                        {!! $supervisors->links() !!}
+                        {!! $students->links() !!}
                     </nav>
                 </div>
             </div>
@@ -132,7 +136,7 @@
           var modalBody = deleteModal.querySelector('.modal-body')
           var modalLink = deleteModal.querySelector('.modal-footer a')
 
-          modalBody.textContent = 'Are you sure to deactivate ' + name + ' as supervisor?'
+          modalBody.textContent = 'Are you sure to deactivate ' + name + ' as student?'
           modalLink.href = link
 
         })

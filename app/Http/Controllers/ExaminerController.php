@@ -19,8 +19,14 @@ class ExaminerController extends Controller
      */
     public function index()
     {
-        $examiners = Examiner::paginate(20);
+        $examiners = Examiner::where('is_active', true)->paginate(10);
         return view('users.examiner.index')->with('examiners', $examiners);
+    }
+
+    public function indexInactive()
+    {
+        $examiners = Examiner::where('is_active', false)->paginate(10);
+        return view('users.examiner.indexInactive')->with('examiners', $examiners);
     }
 
     /**

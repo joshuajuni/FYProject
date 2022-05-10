@@ -19,8 +19,8 @@
                 <div class="col-md-6">
                     <p class="text-primary m-0 fw-bold">Supervisor Listing</p>
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success" role="button" disabled>Active</a>
-                        <a class="btn btn-outline-danger" href="{{route('supervisor.indexInactive')}}" role="button">Inactive</a>
+                        <a class="btn btn-outline-success" href="{{route('supervisor.index')}}" role="button">Active</a>
+                        <a class="btn btn-danger" role="button" disabled>Inactive</a>
                     </div>
                 </div>
                 <div class="col-md-6">
