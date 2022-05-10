@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\Student;
 use App\Models\Supervisor;
+use Auth;
 
 class StudentController extends Controller
 {
@@ -19,7 +20,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        if (isset(Auth::user()->profile->supervisor)) {
+            $students = Student::where('supervisor_id', Auth::user()->profile->supervisor->id)->paginate(20);
+        }else{
+            $students = Student::paginate(20);
+        }
         return view('users.student.index')->with('students', $students);
     }
 
@@ -119,14 +124,26 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Make user unactive.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
     {
-        $student->delete();
-        return redirect()->back()->with('success', 'Student deleted successfully!');
+        $student->update(['is_active' => false]);
+        return redirect()->back()->with('success', 'Student deactivated successfully!');
+    }
+
+    /**
+     * Make user active.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function makeActive(Student $student)
+    {
+        $student->update(['is_active' => true]);
+        return redirect()->back()->with('success', 'Student is now active!');
     }
 }

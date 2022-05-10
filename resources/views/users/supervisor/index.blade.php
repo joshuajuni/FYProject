@@ -14,22 +14,32 @@
     @endif
     <a class="btn btn-primary" href="{{route('supervisor.create')}}" role="button">Add Supervisor</a>
     <div class="card shadow">
-        <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Supervisor Listing</p>
+        <div class="card-header py-3"> 
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-primary m-0 fw-bold">Supervisor Listing</p>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                    </div>
+                </div> 
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table my-0" id="dataTable">
+                <table class="table table-striped my-0" id="dataTable">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Phone No</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
                         @foreach($supervisors as $row)
                         <tr>
                             <td>{{ $row->profile->name }}</td>
@@ -37,17 +47,28 @@
                             <td>{{ $row->profile->user->email }}</td>
                             <td>{{ $row->profile->phone_no }}</td>
                             <td>
+                                @if($row->is_active == true)
+                                    <span class="badge bg-success">Active</span>
+                                @elseif($row->is_active == false)
+                                    <span class="badge bg-danger">Unactive</span>
+                                @endif
+                            </td>
+                            <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('supervisor.view',$row->profile->supervisor)}}" role="button">View</a>
                                     <a class="btn btn-primary" href="{{route('supervisor.edit',$row->profile->supervisor)}}" role="button">Edit</a>
-                                    <a role="button" class="btn btn-primary"
+                                    @if($row->is_active == true)
+                                    <a role="button" class="btn btn-danger"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"
                                         data-bs-name="{{$row->profile->name}}"
                                         data-bs-link="{{route('supervisor.destroy',$row)}}"
                                     >
-                                        Delete
+                                        Deactivate
                                     </a>
+                                    @elseif($row->is_active == false)
+                                    <a class="btn btn-success" href="{{route('supervisor.makeActive',$row)}}" role="button">Make active</a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -57,6 +78,16 @@
                         <tr></tr>
                     </tfoot>
                 </table>
+            </div>
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"></p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        {!! $supervisors->links() !!}
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -75,7 +106,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a class="btn btn-primary" href="" role="button">Delete</a>
+        <a class="btn btn-primary" href="" role="button">Deactivate</a>
       </div>
     </div>
   </div>
@@ -99,10 +130,21 @@
           var modalBody = deleteModal.querySelector('.modal-body')
           var modalLink = deleteModal.querySelector('.modal-footer a')
 
-          modalBody.textContent = 'Are you sure to remove ' + name + ' as supervisor?'
+          modalBody.textContent = 'Are you sure to deactivate ' + name + ' as supervisor?'
           modalLink.href = link
 
         })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 
 @endsection

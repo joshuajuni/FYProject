@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class Admin
+class AdminOrStudent
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if(isset(Auth::user()->profile->admin)) {
+            if(isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student)) {
                 return $next($request);
             } else {
                 return abort('403');

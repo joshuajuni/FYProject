@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Examiner;
+use Auth;
 
 class ExaminerController extends Controller
 {
@@ -18,7 +19,7 @@ class ExaminerController extends Controller
      */
     public function index()
     {
-        $examiners = Examiner::all();
+        $examiners = Examiner::paginate(20);
         return view('users.examiner.index')->with('examiners', $examiners);
     }
 
@@ -116,14 +117,26 @@ class ExaminerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Make user unactive.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Examiner $examiner)
     {
-        $examiner->delete();
-        return redirect()->back()->with('success', 'Examiner deleted successfully!');
+        $examiner->update(['is_active' => false]);
+        return redirect()->back()->with('success', 'Examiner deactivated successfully!');
+    }
+
+    /**
+     * Make user active.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function makeActive(Examiner $examiner)
+    {
+        $examiner->update(['is_active' => true]);
+        return redirect()->back()->with('success', 'Examiner is now active!');
     }
 }

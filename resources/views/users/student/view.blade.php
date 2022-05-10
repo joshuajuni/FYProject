@@ -6,7 +6,9 @@
 
 <div class="container-fluid">
     <h3 class="text-dark mb-4">View Student</h3>
+    @if (isset(Auth::user()->profile->admin))
     <a class="btn btn-primary" href="{{route('student.edit', $student)}}" role="button">Edit Student</a>
+    @endif
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Student Info</p>

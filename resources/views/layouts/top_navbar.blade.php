@@ -14,7 +14,7 @@
                 </div>
             </li> -->
             <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
+                <!-- <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                         <span class="badge bg-danger badge-counter">3+</span>
                         <i class="fas fa-bell fa-fw"></i>
@@ -56,16 +56,16 @@
                             Show All Alerts
                         </a>
                     </div>
-                </div>
+                </div> -->
             </li>
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                         <span class="d-none d-lg-inline me-2 text-gray-600 small">
-                            Valerie Luna
+                            {{Auth::user()->profile->name}}
                         </span>
-                        <img class="border rounded-circle img-profile" src="{{ asset('assets/img/avatars/avatar1.jpeg') }}">
+                        <!-- <img class="border rounded-circle img-profile" src="{{ asset('assets/img/avatars/avatar1.jpeg') }}"> -->
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="{{route('profile.index')}}">

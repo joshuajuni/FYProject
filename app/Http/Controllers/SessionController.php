@@ -15,13 +15,35 @@ class SessionController extends Controller
 {
     public function index()
     {
-        $sessions = Session::all();
+        if (isset(Auth::user()->profile->admin)) {
+            $sessions = Session::all()->sortBy('date');
+        }
+        elseif (isset(Auth::user()->profile->supervisor)) {
+            $students = Auth::user()->profile->supervisor->students->pluck('id');
+            //return $students;
+            $sessions = Session::whereIn('student_id',  $students)
+                        ->orderBy('date')
+                        ->get();
+        }elseif (isset(Auth::user()->profile->examiner)) {
+            $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orderBy('date')
+                        ->get();
+        }elseif (isset(Auth::user()->profile->student)) {
+            $sessions = Session::where('student_id', Auth::user()->profile->student->id)
+                        ->orderBy('date')
+                        ->get();
+        }
         return view('session.index')->with('sessions', $sessions);
     }
 
     public function create()
     {
-        $students = Student::all();
+        if (isset(Auth::user()->profile->student)) {
+            $students = Student::where('id', Auth::user()->profile->student->id)->get();
+        }else {
+            $students = Student::all();
+        }
         $examiners = Examiner::all();
         return view('session.create')->with('students', $students)->with('examiners', $examiners);
     }
@@ -56,19 +78,25 @@ class SessionController extends Controller
     public function view(Session $session)
     {
         $examinerIDs = $session->assessment->pluck('examiner_id'); //id of examiner that has done assessment
-        // return $examinerIDs;
         return view('session.view')->with('session', $session)->with('examinerIDs', $examinerIDs);
     }
 
     public function edit(Session $session)
     {
-        $students = Student::all();
+        if (isset(Auth::user()->profile->student)) {
+            $students = Student::where('id', Auth::user()->profile->student->id)->get();
+        }else {
+            $students = Student::all();
+        }
         $examiners = Examiner::all();
         return view('session.edit')->with('students', $students)->with('examiners', $examiners)->with('session', $session);
     }
 
     public function update(Request $request, Session $session)
     {
+        if ($request->examiner1_id == $request->examiner2_id) {
+            return back()->withErrors(['msg' => 'Examiner 1 and Examiner 2 cannot be the same']);
+        }
         $session->update($request->all());
 
         $users = [
@@ -90,7 +118,11 @@ class SessionController extends Controller
 
     public function destroy(Session $session)
     {
-        $session->delete();
-        return redirect()->back()->with('success', 'Session deleted successfully!');
+        if (isset($session->assessment) || Carbon::today()->toDateString() >= $session->date ) {
+            return redirect()->back()->with('error', 'Unable to delete session');
+        }else{
+            $session->delete();
+            return redirect()->back()->with('success', 'Session deleted successfully!');
+        }
     }
 }

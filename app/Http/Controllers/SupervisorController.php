@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Supervisor;
+use App\Models\Student;
+use Auth;
 
 class SupervisorController extends Controller
 {
@@ -18,7 +20,7 @@ class SupervisorController extends Controller
      */
     public function index()
     {
-        $supervisors = Supervisor::all();
+        $supervisors = Supervisor::paginate(20);
         return view('users.supervisor.index')->with('supervisors', $supervisors);
     }
 
@@ -81,7 +83,7 @@ class SupervisorController extends Controller
      */
     public function view(Supervisor $supervisor)
     {
-        $students = $supervisor->students;
+        $students = Student::where('supervisor_id', $supervisor->id)->paginate(10);
         return view('users.supervisor.view')->with('supervisor', $supervisor)->with('students', $students);
     }
 
@@ -117,14 +119,26 @@ class SupervisorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Make user unactive.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Supervisor $supervisor)
     {
-        $supervisor->delete();
-        return redirect()->back()->with('success', 'Supervisor deleted successfully!');
+        $supervisor->update(['is_active' => false]);
+        return redirect()->back()->with('success', 'Supervisor deactivated successfully!');
+    }
+    
+    /**
+     * Make user active.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function makeActive(Supervisor $supervisor)
+    {
+        $supervisor->update(['is_active' => true]);
+        return redirect()->back()->with('success', 'Supervisor is now active!');
     }
 }

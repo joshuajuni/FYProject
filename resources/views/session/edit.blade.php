@@ -18,7 +18,7 @@
                     <label class="form-label" for="student_id">
                         <strong>Student</strong>
                     </label>
-                    <select id="student_id" class="form-select" name="student_id" required>
+                    <select id="student_id" class="form-select js-example-basic-single" name="student_id" required>
                         <option selected disabled value="">--Select--</option>
                         @foreach($students as $row)
                         <option <?php if ($session->student == $row): ?>selected<?php endif ?> value="{{ $row->id }}">{{ $row->profile->name }}</option>
@@ -31,7 +31,7 @@
                             <label class="form-label" for="examiner1_id">
                                 <strong>Examiner 1</strong>
                             </label>
-                            <select id="examiner1_id" class="form-select" name="examiner1_id" required>
+                            <select id="examiner1_id" class="form-select js-example-basic-single" name="examiner1_id" required>
                                 <option selected disabled value="">--Select--</option>
                                 @foreach($examiners as $row)
                                 <option <?php if ($session->examiner1_id == $row->id): ?>selected<?php endif ?> value="{{ $row->id }}">{{ $row->profile->name }}</option>
@@ -44,7 +44,7 @@
                             <label class="form-label" for="examiner2_id">
                                 <strong>Examiner 2</strong>
                             </label>
-                            <select id="examiner2_id" class="form-select" name="examiner2_id" required>
+                            <select id="examiner2_id" class="form-select js-example-basic-single" name="examiner2_id" required>
                                 <option selected disabled value="">--Select--</option>
                                 @foreach($examiners as $row)
                                 <option <?php if ($session->examiner2_id == $row->id): ?>selected<?php endif ?> value="{{ $row->id }}">{{ $row->profile->name }}</option>
@@ -111,4 +111,11 @@
     </div>
 </div>
 
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 @endsection

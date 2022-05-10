@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Admin;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -18,7 +19,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::all();
+        $admins = Admin::paginate(20);
         return view('users.admin.index')->with('admins', $admins);
     }
 
@@ -116,14 +117,26 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Make user unactive
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Admin $admin)
     {
-        $admin->delete();
-        return redirect()->back()->with('success', 'Admin deleted successfully!');
+        $admin->update(['is_active' => false]);
+        return redirect()->back()->with('success', 'Admin deactivated successfully!');
+    }
+
+    /**
+     * Make user active.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function makeActive(Admin $admin)
+    {
+        $admin->update(['is_active' => true]);
+        return redirect()->back()->with('success', 'Admin is now active!');
     }
 }

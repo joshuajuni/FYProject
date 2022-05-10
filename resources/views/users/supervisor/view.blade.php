@@ -32,6 +32,12 @@
                     <input class="form-control" type="email" id="email" name="email" value="{{ $supervisor->profile->user->email }}" disabled>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="phone_no">
+                        <strong>Phone No.</strong>
+                    </label>
+                    <input class="form-control" type="text" id="phone_no" name="phone_no" value="{{ $supervisor->profile->phone_no }}" disabled>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="email">
                         <strong>Students under supervision</strong>
                     </label>
@@ -41,6 +47,7 @@
                                 <th>Name</th>
                                 <th>Matrix No.</th>
                                 <th>Email</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -51,6 +58,13 @@
                                 <td>{{ $row->profile->user->username }}</td>
                                 <td>{{ $row->profile->user->email }}</td>
                                 <td>
+                                    @if($row->is_active == true)
+                                        <span class="badge bg-success">Active</span>
+                                    @elseif($row->is_active == false)
+                                        <span class="badge bg-danger">Unactive</span>
+                                    @endif
+                                </td>
+                                <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-primary" href="{{route('student.view',$row->profile->student)}}" role="button">View</a>
                                     </div>
@@ -60,11 +74,15 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="phone_no">
-                        <strong>Phone No.</strong>
-                    </label>
-                    <input class="form-control" type="text" id="phone_no" name="phone_no" value="{{ $supervisor->profile->phone_no }}" disabled>
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"></p>
+                    </div>
+                    <div class="col-md-6">
+                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                            {!! $students->links() !!}
+                        </nav>
+                    </div>
                 </div>
             </form>
         </div>

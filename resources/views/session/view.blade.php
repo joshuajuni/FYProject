@@ -21,7 +21,9 @@
             </ul>
         </div>
     @endif
+    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
     <a class="btn btn-primary" href="{{route('session.edit', $session)}}" role="button">Edit Session</a>
+    @endif
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session Info</p>

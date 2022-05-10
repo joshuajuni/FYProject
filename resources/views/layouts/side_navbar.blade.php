@@ -22,13 +22,13 @@
                     <span>Session</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{route('assessment.index')}}">
                     <i class="fas fa-file"></i>
                     <span>Assessment</span>
                 </a>
-            </li>
-            @if (isset(Auth::user()->profile->admin))
+            </li> -->
+            @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->supervisor))
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1">
                     <i class="far fa-user-circle"></i>
@@ -36,6 +36,7 @@
                 </a>
                 <div class="collapse" id="collapse-1">
                     <ul class="navbar-nav text-light">
+                        @if (isset(Auth::user()->profile->admin))
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.index')}}">
                                 <span>Admin</span>
@@ -51,11 +52,14 @@
                                 <span>Supervisor</span>
                             </a>
                         </li>
+                        @endif
+                        @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->supervisor))
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('student.index')}}">
                                 <span>Student</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>

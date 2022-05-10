@@ -12,7 +12,9 @@
     @if (Session::has('success'))
         <div class="alert alert-success" role="alert">{{ Session::get('success', '') }}</div>
     @endif
+    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
     <a class="btn btn-primary" href="{{route('session.create')}}" role="button">Add Session</a>
+    @endif
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session Listing</p>
@@ -41,6 +43,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('session.view',$row)}}" role="button">View</a>
+                                    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
                                     <a class="btn btn-primary" href="{{route('session.edit',$row)}}" role="button">Edit</a>
                                     <a role="button" class="btn btn-primary"
                                         data-bs-toggle="modal"
@@ -50,6 +53,7 @@
                                     >
                                         Delete
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
