@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class AdminOrStudent
+class ExceptExaminer
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class AdminOrStudent
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            if(isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student)) {
+            if(isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor)) {
                 return $next($request);
             } else {
                 return abort('403');

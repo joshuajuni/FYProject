@@ -12,6 +12,7 @@ class Session extends Model
 
     protected $fillable = [
         'created_by',
+        'session_type',
         'student_id',
         'title',
         'date',
@@ -20,12 +21,18 @@ class Session extends Model
         'venue',
         'examiner1_id',
         'examiner2_id',
+        'chairperson_id',
         'proposal_title'
     ];
 
     public function assessment()
     {
         return $this->hasMany('App\Models\Assessment');
+    }
+
+    public function proposal()
+    {
+        return $this->hasOne('App\Models\Proposal');
     }
 
     public function student()
@@ -41,6 +48,11 @@ class Session extends Model
     public function examiner2()
     {
         return $this->hasOne('App\Models\Examiner', 'id', 'examiner2_id');
+    }
+
+    public function chairperson()
+    {
+        return $this->hasOne('App\Models\Examiner', 'id', 'chairperson_id');
     }
 
     public function creator()

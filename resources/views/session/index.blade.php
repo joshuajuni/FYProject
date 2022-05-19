@@ -12,7 +12,7 @@
     @if (Session::has('success'))
         <div class="alert alert-success" role="alert">{{ Session::get('success', '') }}</div>
     @endif
-    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
+    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
     <a class="btn btn-primary" href="{{route('session.create')}}" role="button">Add Session</a>
     @endif
     <div class="card shadow">
@@ -43,7 +43,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('session.view',$row)}}" role="button">View</a>
-                                    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
+                                    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
                                     <a class="btn btn-primary" href="{{route('session.edit',$row)}}" role="button">Edit</a>
                                     <a role="button" class="btn btn-primary"
                                         data-bs-toggle="modal"

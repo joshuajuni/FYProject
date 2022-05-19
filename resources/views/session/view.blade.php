@@ -21,7 +21,7 @@
             </ul>
         </div>
     @endif
-    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student))
+    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
     <a class="btn btn-primary" href="{{route('session.edit', $session)}}" role="button">Edit Session</a>
     @endif
     <div class="card shadow">
@@ -35,7 +35,13 @@
                     <label class="form-label" for="student_id">
                         <strong>Student</strong>
                     </label>
-                    <input class="form-control" type="text" id="student_id" name="student_id" value="{{ $session->student->profile->name }}" disabled>
+                    <input class="form-control" type="text" id="student_id" name="student_id" value="{{ $session->student->profile->name }} ({{ $session->student->profile->user->username }})" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="chairperson_id">
+                        <strong>Chairperson</strong>
+                    </label>
+                    <input class="form-control" type="text" id="chairperson_id" name="examiner1_id" value="{{ $session->chairperson->profile->name }}" disabled>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
@@ -55,17 +61,48 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                	<label class="form-label" for="title">
-                		<strong>Title</strong>
-                	</label>
-                	<input class="form-control" type="text" id="title" name="title" value="{{ $session->title }}" disabled>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="title">
+                                <strong>Title</strong>
+                            </label>
+                            <input class="form-control" type="text" id="title" name="title" value="{{ $session->title }}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="session_type">
+                                <strong>Session Type</strong>
+                            </label>
+                            <input class="form-control" type="text" id="session_type" name="session_type"
+                            <?php if ($session->session_type == 1): ?>
+                                value="Proposal Defence Session"
+                            <?php elseif ($session->session_type == 2): ?>
+                                value="Internal Rigorous Assessment"
+                            <?php endif ?>
+                            disabled>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                 	<label class="form-label" for="proposal_title">
                 		<strong>Proposal Title</strong>
                 	</label>
                 	<input class="form-control" type="text" id="proposal_title" name="proposal_title" value="{{ $session->proposal_title }}" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">
+                        <strong>Proposal File</strong>
+                    </label>
+                    <div class="input-group">
+                        <?php if (isset($session->proposal)): ?>
+                        <a class="btn btn-outline-secondary" href="{{ asset('storage/'.$session->proposal->path) }}" target=”_blank” role="button">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            View File
+                        </a>
+                        <?php endif ?>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">

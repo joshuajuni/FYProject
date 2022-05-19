@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('session_id');
             $table->string('title');
-            $table->unsignedInteger('student_id');
-            $table->string('file');
+            $table->string('path');
             $table->timestamps();
             $table->softDeletes();
         });

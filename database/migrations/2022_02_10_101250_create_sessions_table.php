@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('created_by');
+            $table->unsignedInteger('session_type');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('examiner1_id');
             $table->unsignedInteger('examiner2_id');
+            $table->unsignedInteger('chairperson_id');
             $table->string('title');
             $table->date('date');
             $table->time('time');

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Session;
+use App\Models\Proposal;
 use App\Models\Student;
 use App\Models\Examiner;
 use Auth;
 use Notification;
 use App\Notifications\NewSessionNotification;
 use App\Notifications\SessionUpdateNotification;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class SessionController extends Controller
 {
@@ -27,6 +30,7 @@ class SessionController extends Controller
         }elseif (isset(Auth::user()->profile->examiner)) {
             $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
                         ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
                         ->orderBy('date')
                         ->get();
         }elseif (isset(Auth::user()->profile->student)) {
@@ -42,26 +46,41 @@ class SessionController extends Controller
         if (isset(Auth::user()->profile->student)) {
             $students = Student::where('id', Auth::user()->profile->student->id)->get();
         }else {
-            $students = Student::all();
+            $students = Student::where('is_active', true)->get();
         }
-        $examiners = Examiner::all();
+        $examiners = Examiner::where('is_active', true)->get();
         return view('session.create')->with('students', $students)->with('examiners', $examiners);
     }
 
     public function store(Request $request)
     {
         // return $request;
+ 
         if ($request->examiner1_id == $request->examiner2_id) {
             return back()->withErrors(['msg' => 'Examiner 1 and Examiner 2 cannot be the same']);
         }
+        if ( ($request->examiner1_id == $request->chairperson_id) || ($request->examiner2_id == $request->chairperson_id)) {
+            return back()->withErrors(['msg' => 'Chairperson cannot be one of the examiners']);
+        }
         $request->merge(['created_by' => Auth::user()->id]);
         $session = Session::create($request->all());
+
+        $path = $request->file('file')->storeAs('proposals', $session->student->profile->user->username.'_proposal.pdf', 'public');
+
+        $request->merge([
+            'session_id'    => $session->id,
+            'title'         => $request->proposal_title,
+            'path'          => $path
+        ]);
+
+        Proposal::create($request->all());
 
         $users = [
             $session->student->profile->user,
             $session->student->supervisor->profile->user,
             $session->examiner1->profile->user,
             $session->examiner2->profile->user,
+            $session->chairperson->profile->user,
         ];
 
         $sessionData = [
@@ -69,7 +88,7 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-           Notification::send($user, new NewSessionNotification($sessionData));
+           // Notification::send($user, new NewSessionNotification($sessionData));
         }
 
         return redirect()->route('session.index')->with('success', 'Session created successfully!');
@@ -86,9 +105,9 @@ class SessionController extends Controller
         if (isset(Auth::user()->profile->student)) {
             $students = Student::where('id', Auth::user()->profile->student->id)->get();
         }else {
-            $students = Student::all();
+            $students = Student::where('is_active', true)->get();
         }
-        $examiners = Examiner::all();
+        $examiners = Examiner::where('is_active', true)->get();
         return view('session.edit')->with('students', $students)->with('examiners', $examiners)->with('session', $session);
     }
 
@@ -97,13 +116,29 @@ class SessionController extends Controller
         if ($request->examiner1_id == $request->examiner2_id) {
             return back()->withErrors(['msg' => 'Examiner 1 and Examiner 2 cannot be the same']);
         }
+        if ( ($request->examiner1_id == $request->chairperson_id) || ($request->examiner2_id == $request->chairperson_id)) {
+            return back()->withErrors(['msg' => 'Chairperson cannot be one of the examiners']);
+        }
         $session->update($request->all());
+
+        if (isset($request->file)) {
+            $path = $request->file('file')->storeAs('proposals', $session->student->profile->user->username.'_proposal.pdf', 'public');
+
+            Proposal::updateOrCreate(
+                ['session_id'    => $session->id],
+                [   
+                    'title' => $request->proposal_title, 
+                    'path'  => $path
+                ]
+            );
+        }
 
         $users = [
             $session->student->profile->user,
             $session->student->supervisor->profile->user,
             $session->examiner1->profile->user,
             $session->examiner2->profile->user,
+            $session->chairperson->profile->user,
         ];
 
         $sessionData = [
@@ -111,16 +146,19 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-           Notification::send($user, new SessionUpdateNotification($sessionData));
+           // Notification::send($user, new SessionUpdateNotification($sessionData));
         }
         return redirect()->route('session.index')->with('success', 'Session updated successfully!');
     }
 
     public function destroy(Session $session)
     {
-        if (isset($session->assessment) || Carbon::today()->toDateString() >= $session->date ) {
+        if (count($session->assessment) != 0 || Carbon::today()->toDateString() >= $session->date ) {
             return redirect()->back()->with('error', 'Unable to delete session');
         }else{
+            if (isset($session->proposal)) {
+                $session->proposal->delete();
+            }
             $session->delete();
             return redirect()->back()->with('success', 'Session deleted successfully!');
         }

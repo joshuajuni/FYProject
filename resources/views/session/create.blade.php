@@ -26,7 +26,7 @@
             <p class="text-primary m-0 fw-bold">Session Info</p>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('session.store') }}">
+            <form method="POST" action="{{ route('session.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="mb-3">
                     <label class="form-label" for="student_id">
@@ -35,6 +35,19 @@
                     <select id="student_id" class="form-select js-example-basic-single" name="student_id" required>
                         <option selected disabled value="">--Select--</option>
                         @foreach($students as $row)
+                        <option value="{{ $row->id }}">
+                            {{ $row->profile->name }} ({{ $row->profile->user->username }})
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="chairperson_id">
+                        <strong>Chairperson</strong>
+                    </label>
+                    <select id="chairperson_id" class="form-select js-example-basic-single" name="chairperson_id" required>
+                        <option selected disabled value="">--Select--</option>
+                        @foreach($examiners as $row)
                         <option value="{{ $row->id }}">{{ $row->profile->name }}</option>
                         @endforeach
                     </select>
@@ -67,17 +80,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                	<label class="form-label" for="title">
-                		<strong>Title</strong>
-                	</label>
-                	<input class="form-control" type="text" id="title" name="title" required>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="title">
+                                <strong>Session Title</strong>
+                            </label>
+                            <input class="form-control" type="text" id="title" name="title" required>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="session_type">
+                                <strong>Session Type</strong>
+                            </label>
+                            <select id="session_type" class="form-select" name="session_type" required>
+                                <option selected disabled value="">--Select--</option>
+                                <option value="1"> Proposal Defence Session </option>
+                                <option value="2"> Internal Rigorous Assessment</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                 	<label class="form-label" for="proposal_title">
                 		<strong>Proposal Title</strong>
                 	</label>
                 	<input class="form-control" type="text" id="proposal_title" name="proposal_title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">
+                        <strong>Proposal File</strong>
+                    </label>
+                   <input class="form-control" type="file" id="file" name="file">
                 </div>
                 <div class="row">
                     <div class="col">

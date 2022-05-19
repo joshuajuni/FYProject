@@ -44,6 +44,7 @@ class SessionReminder implements ShouldQueue
                     $session->student->supervisor->profile->user,
                     $session->examiner1->profile->user,
                     $session->examiner2->profile->user,
+                    $session->chairperson->profile->user,
                 ];
 
                 $sessionData = [
@@ -60,6 +61,7 @@ class SessionReminder implements ShouldQueue
                     $session->student->supervisor->profile->user,
                     $session->examiner1->profile->user,
                     $session->examiner2->profile->user,
+                    $session->chairperson->profile->user,
                 ];
 
                 $sessionData = [
@@ -76,6 +78,7 @@ class SessionReminder implements ShouldQueue
                     $session->student->supervisor->profile->user,
                     $session->examiner1->profile->user,
                     $session->examiner2->profile->user,
+                    $session->chairperson->profile->user,
                 ];
 
                 $sessionData = [

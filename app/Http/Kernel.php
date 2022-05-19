@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
         'examiner' => \App\Http\Middleware\Examiner::class,
         'supervisor' => \App\Http\Middleware\Supervisor::class,
         'student' => \App\Http\Middleware\Student::class,
-        'adminOrStudent' => \App\Http\Middleware\AdminOrStudent::class,
+        'exceptExaminer' => \App\Http\Middleware\ExceptExaminer::class,
         'adminOrSupervisor' => \App\Http\Middleware\AdminOrSupervisor::class,
     ];
 }

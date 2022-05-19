@@ -26,12 +26,16 @@ Route::get('/send-reminder', [NotificationController::class, 'sendReminder']);
 
 Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
-    Route::middleware('adminOrStudent')->get('/create', [SessionController::class, 'create'])->name('create');
-    Route::middleware('adminOrStudent')->post('/store', [SessionController::class, 'store'])->name('store');
+    Route::middleware('exceptExaminer')->get('/create', [SessionController::class, 'create'])->name('create');
+    Route::middleware('exceptExaminer')->post('/store', [SessionController::class, 'store'])->name('store');
     Route::get('/view/{session}', [SessionController::class, 'view'])->name('view');
-    Route::middleware('adminOrStudent')->get('/edit/{session}', [SessionController::class, 'edit'])->name('edit');
-    Route::middleware('adminOrStudent')->post('/update/{session}', [SessionController::class, 'update'])->name('update');
-    Route::middleware('adminOrStudent')->get('/destroy/{session}', [SessionController::class, 'destroy'])->name('destroy');
+    Route::middleware('exceptExaminer')->get('/edit/{session}', [SessionController::class, 'edit'])->name('edit');
+    Route::middleware('exceptExaminer')->post('/update/{session}', [SessionController::class, 'update'])->name('update');
+    Route::middleware('exceptExaminer')->get('/destroy/{session}', [SessionController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware('auth')->prefix('/proposal')->as('proposal.')->group(function(){
+    Route::middleware('exceptExaminer')->get('/destroy/{proposal}', [ProposalController::class, 'destroy'])->name('destroy');
 });
 
 Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(function(){

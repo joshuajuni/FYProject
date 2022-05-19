@@ -38,6 +38,7 @@ class HomeController extends Controller
         }elseif (isset(Auth::user()->profile->examiner)) {
             $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
                         ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
                         ->orderBy('date')
                         ->get();
         }elseif (isset(Auth::user()->profile->student)) {
