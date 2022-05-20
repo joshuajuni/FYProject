@@ -47,10 +47,20 @@
                     <input class="form-control" type="email" id="email" value="{{ $student->profile->user->email }}" name="email">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="type">
+                        <strong>Type</strong>
+                    </label>
+                    <select id="type" class="form-select" name="type">
+                        <option selected disabled>--Select--</option>
+                        <option <?php if ($student->type == 1): ?>selected<?php endif ?> value="1">MSc</option>
+                        <option <?php if ($student->type == 2): ?>selected<?php endif ?> value="2">PhD</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="supervisor_id">
                         <strong>Supervisor</strong>
                     </label>
-                    <select id="supervisor_id" class="form-select" name="supervisor_id">
+                    <select id="supervisor_id" class="form-select js-example-basic-single" name="supervisor_id">
                         @foreach($supervisors as $row)
                         <option <?php if ($student->supervisor == $row): ?>selected<?php endif ?> value="{{$row->id}}">
                             {{$row->profile->name}}
@@ -72,4 +82,11 @@
     </div>
 </div>
 
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 @endsection

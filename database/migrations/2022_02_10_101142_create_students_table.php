@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('profile_id');
             $table->unsignedInteger('supervisor_id');
+            $table->unsignedInteger('type');
             $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();

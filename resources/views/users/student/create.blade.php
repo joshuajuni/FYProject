@@ -47,10 +47,20 @@
                     <input class="form-control" type="email" id="email" name="email">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="type">
+                        <strong>Type</strong>
+                    </label>
+                    <select id="type" class="form-select" name="type">
+                        <option selected disabled>--Select--</option>
+                        <option value="1">MSc</option>
+                        <option value="2">PhD</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="supervisor_id">
                         <strong>Supervisor</strong>
                     </label>
-                    <select id="supervisor_id" class="form-select" name="supervisor_id">
+                    <select id="supervisor_id" class="form-select js-example-basic-single" name="supervisor_id">
                         <option selected disabled>--Select--</option>
                         @foreach($supervisors as $row)
                         <option value="{{$row->id}}">{{$row->profile->name}}</option>
@@ -82,5 +92,11 @@
         </div>
     </div>
 </div>
-
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 @endsection

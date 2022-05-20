@@ -34,6 +34,18 @@
                     <input class="form-control" type="email" id="email" name="email" value="{{ $student->profile->user->email }}" disabled>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="type">
+                        <strong>Type</strong>
+                    </label>
+                    <input class="form-control" type="text" id="type" name="type"
+                    <?php if ($student->type == 1): ?>
+                         value="MSc"
+                    <?php elseif ($student->type == 2): ?>
+                         value="PhD
+                    <?php endif ?>
+                    disabled>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="supervisor_id">
                         <strong>Supervisor</strong>
                     </label>

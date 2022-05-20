@@ -101,6 +101,8 @@
                             <i class="fa fa-eye" aria-hidden="true"></i>
                             View File
                         </a>
+                        <?php else: ?>
+                            No files uploaded
                         <?php endif ?>
                     </div>
                 </div>
