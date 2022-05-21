@@ -14,7 +14,7 @@ class Assessment extends Model
         'student_id',
         'examiner_id',
         'session_id',
-        'comments'
+        'data'
     ];
 
     public function session()

@@ -88,7 +88,7 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-            Notification::send($user, new NewSessionNotification($sessionData));
+            // Notification::send($user, new NewSessionNotification($sessionData));
         }
 
         return redirect()->route('session.index')->with('success', 'Session created successfully!');

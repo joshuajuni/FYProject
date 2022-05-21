@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->unsignedInteger('student_id');
             $table->unsignedInteger('examiner_id');
             $table->unsignedInteger('session_id');
-            $table->string('comments');
+            $table->text('data')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

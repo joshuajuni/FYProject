@@ -77,9 +77,9 @@
                             </label>
                             <input class="form-control" type="text" id="session_type" name="session_type"
                             <?php if ($session->session_type == 1): ?>
-                                value="Proposal Defence Session"
+                                value="Proposal Defence"
                             <?php elseif ($session->session_type == 2): ?>
-                                value="Internal Rigorous Assessment"
+                                value="Rigorous Assessment"
                             <?php endif ?>
                             disabled>
                         </div>
@@ -162,9 +162,6 @@
                 @if ( ($session->examiner1->profile->user->id == Auth::user()->id || $session->examiner2->profile->user->id == Auth::user()->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id))
                 <a class="btn btn-primary" href="{{route('assessment.create',$session)}}" role="button">Add Assessment</a>
                 @endif
-                <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$session)}}">
-                    <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Assessment PDF
-                </a>
         </div>
         <div class="card-body">
             @if(count($session->assessment)>0)
@@ -173,16 +170,14 @@
                     <thead>
                         <tr>
                             <th>Examiner Name</th>
-                            <th>Comment</th>
-                            <th>Actions</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($session->assessment as $row)
                         <tr>
                             <td>{{ $row->examiner->profile->name }}</td>
-                            <td>{!! $row->comments !!}</td>
-                            <td>
+                            <td class="text-center">
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary" href="{{route('assessment.view',$row)}}" role="button">View</a>
                                     @if ( $row->examiner->profile->user->id == Auth::user()->id)
@@ -194,6 +189,9 @@
                                         data-bs-link="{{route('assessment.destroy',$row)}}"
                                     >
                                         Delete
+                                    </a>
+                                    <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$row)}}">
+                                        <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Assessment PDF
                                     </a>
                                     @endif
                                 </div>

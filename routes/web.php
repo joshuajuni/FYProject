@@ -46,7 +46,7 @@ Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(funct
     Route::middleware('examiner')->get('/edit/{assessment}', [AssessmentController::class, 'edit'])->name('edit');
     Route::middleware('examiner')->post('/update/{assessment}', [AssessmentController::class, 'update'])->name('update');
     Route::middleware('examiner')->get('/destroy/{assessment}', [AssessmentController::class, 'destroy'])->name('destroy');
-    Route::get('/generate/{session}', [AssessmentController::class, 'generate'])->name('generate');
+    Route::get('/generate/{assessment}', [AssessmentController::class, 'generate'])->name('generate');
 });
 
 Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){

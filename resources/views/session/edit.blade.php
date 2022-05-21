@@ -96,8 +96,8 @@
                             </label>
                             <select id="session_type" class="form-select" name="session_type" required>
                                 <option selected disabled value="">--Select--</option>
-                                <option <?php if ($session->session_type == 1): ?> selected <?php endif ?> value="1"> Proposal Defence Session </option>
-                                <option <?php if ($session->session_type == 2): ?> selected <?php endif ?> value="2"> Internal Rigorous Assessment</option>
+                                <option <?php if ($session->session_type == 1): ?> selected <?php endif ?> value="1"> Proposal Defence </option>
+                                <option <?php if ($session->session_type == 2): ?> selected <?php endif ?> value="2"> Rigorous Assessment</option>
                             </select>
                         </div>
                     </div>
