@@ -53,9 +53,8 @@ class AssessmentController extends Controller
             $data = json_encode($request->except('_token', 'examiner_id', 'session_id'));
 
         }elseif ($session->session_type == 2) {
-            // 
-        }
-            
+            $data = json_encode($request->except('_token', 'examiner_id', 'session_id'));
+        }  
 
         $request->merge([
             'data'    => $data
@@ -71,6 +70,7 @@ class AssessmentController extends Controller
             $assessment->data = json_decode($assessment->data);
             return view('assessment.proposalDefence.view')->with('assessment', $assessment);
         }elseif ($assessment->session->session_type == 2) {
+            $assessment->data = json_decode($assessment->data);
             return view('assessment.rigorousAssessment.view')->with('assessment', $assessment);
         }
     }
@@ -81,11 +81,25 @@ class AssessmentController extends Controller
             $assessment->data = json_decode($assessment->data);
             $view = view('assessment.proposalDefence.generate')->with('assessment', $assessment);
         }elseif ($assessment->session->session_type == 2) {
+            $assessment->data = json_decode($assessment->data);
             $view = view('assessment.rigorousAssessment.generate')->with('assessment', $assessment);
         }
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('assessment.pdf');
+        // return view('assessment.generate')->with('session', $session);
+    }
+
+    public function generateBlank(Session $session)
+    {
+        if ($session->session_type == 1) {
+            $view = view('assessment.proposalDefence.generateBlank')->with('session', $session);
+        }elseif ($session->session_type == 2) {
+            $view = view('assessment.rigorousAssessment.generateBlank')->with('session', $session);
+        }
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('blankForm.pdf');
         // return view('assessment.generate')->with('session', $session);
     }
 
@@ -95,6 +109,7 @@ class AssessmentController extends Controller
             $assessment->data = json_decode($assessment->data);
             return view('assessment.proposalDefence.edit')->with('assessment', $assessment);
         }elseif ($assessment->session->session_type == 2) {
+            $assessment->data = json_decode($assessment->data);
             return view('assessment.rigorousAssessment.edit')->with('assessment', $assessment);
         }
     }
@@ -119,10 +134,9 @@ class AssessmentController extends Controller
             $data = json_encode($request->except('_token', 'examiner_id', 'session_id'));
             
         }elseif ($assessment->session->session_type == 2) {
-            // 
+            $data = json_encode($request->except('_token', 'examiner_id', 'session_id'));
         }
             
-
         $request->merge([
             'data'    => $data
         ]);

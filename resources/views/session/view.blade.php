@@ -159,8 +159,19 @@
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Session's Assessment</p>
-                @if ( ($session->examiner1->profile->user->id == Auth::user()->id || $session->examiner2->profile->user->id == Auth::user()->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id))
+                @if ( 
+                (($session->examiner1->profile->user->id == Auth::user()->id || $session->examiner2->profile->user->id == Auth::user()->id) AND !$examinerIDs->contains(Auth::user()->profile->examiner->id) AND $session->session_type == 1)
+                OR
+                ( $session->chairperson->profile->user->id == Auth::user()->id AND !$examinerIDs->contains(Auth::user()->profile->examiner->id) AND $session->session_type == 2)
+                )
                 <a class="btn btn-primary" href="{{route('assessment.create',$session)}}" role="button">Add Assessment</a>
+                @endif
+                @if ( 
+                (($session->examiner1->profile->user->id == Auth::user()->id || $session->examiner2->profile->user->id == Auth::user()->id) AND $session->session_type == 1)
+                OR
+                ( $session->chairperson->profile->user->id == Auth::user()->id AND $session->session_type == 2)
+                )
+                <a class="btn btn-primary" href="{{route('assessment.generateBlank',$session)}}" role="button">Generate Assessment Form(Blank)</a>
                 @endif
         </div>
         <div class="card-body">

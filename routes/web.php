@@ -47,6 +47,7 @@ Route::middleware('auth')->prefix('/assessment')->as('assessment.')->group(funct
     Route::middleware('examiner')->post('/update/{assessment}', [AssessmentController::class, 'update'])->name('update');
     Route::middleware('examiner')->get('/destroy/{assessment}', [AssessmentController::class, 'destroy'])->name('destroy');
     Route::get('/generate/{assessment}', [AssessmentController::class, 'generate'])->name('generate');
+    Route::get('/generateBlank/{session}', [AssessmentController::class, 'generateBlank'])->name('generateBlank');
 });
 
 Route::middleware('auth')->prefix('/profile')->as('profile.')->group(function(){

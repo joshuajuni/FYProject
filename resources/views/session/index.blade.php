@@ -25,8 +25,8 @@
                     <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Type</th>
                             <th>Date</th>
-                            <th>Time</th>
                             <th>Student</th>
                             <th>Student Matrix No.</th>
                             <th>Actions</th>
@@ -36,8 +36,14 @@
                         @foreach ($sessions as $row)
                         <tr>
                             <td>{{ $row->title }}</td>
+                            <td>
+                                @if($row->session_type == 1)
+                                    Proposal Defence
+                                @elseif($row->session_type == 2)
+                                    Rigorous Assessment
+                                @endif
+                            </td>
                             <td>{{ $row->date }}</td>
-                            <td>{{ $row->time }}</td>
                             <td>{{ $row->student->profile->name }}</td>
                             <td>{{ $row->student->profile->user->username }}</td>
                             <td>

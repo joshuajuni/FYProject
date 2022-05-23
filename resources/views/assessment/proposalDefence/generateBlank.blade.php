@@ -39,25 +39,25 @@
   <tr>
     <td style="padding-top: 10px;padding-bottom: 10px;">STUDENT NAME</td>
     <td style="padding-top: 10px;padding-bottom: 10px;border-bottom:solid black 0.5pt">
-      : <strong>{{ $assessment->session->student->profile->name}}</strong>
+      : <strong>{{ $session->student->profile->name}}</strong>
     </td>
   </tr>
   <tr>
     <td style="padding-top: 10px;padding-bottom: 10px;">MATRIC NO</td>
     <td style="padding-top: 10px;padding-bottom: 10px;border-bottom:solid black 0.5pt">
-      : <strong>{{ $assessment->session->student->profile->user->username}}</strong>
+      : <strong>{{ $session->student->profile->user->username}}</strong>
     </td>
   </tr>
   <tr>
     <td style="padding-top: 10px;padding-bottom: 10px;">RESEARCH TITLE</td>
     <td style="padding-top: 10px;padding-bottom: 10px;border-bottom:solid black 0.5pt">
-      : <strong>{{ $assessment->session->proposal_title }}</strong>
+      : <strong>{{ $session->proposal_title }}</strong>
     </td>
   </tr>
   <tr>
     <td style="padding-top: 10px;padding-bottom: 10px;">SUPERVISOR NAME</td>
     <td style="padding-top: 10px;padding-bottom: 10px;border-bottom:solid black 0.5pt">
-      : <strong>{{ $assessment->session->student->supervisor->profile->name}}</strong>
+      : <strong>{{ $session->student->supervisor->profile->name}}</strong>
     </td>
   </tr>
   <tr>
@@ -112,9 +112,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->A1 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -135,9 +132,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->A2 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -158,9 +152,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->A3 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -181,9 +172,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->A4 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -204,9 +192,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->A5 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -229,7 +214,7 @@
         <span style='font-size:11.5pt'>&nbsp;</span>
       </p>
       <p class=TableParagraph align=right style='margin-top:.05pt;margin-right:4.65pt;margin-left:0cm;margin-bottom:.0001pt;text-align: right'>
-        <span style='font-size:12.0pt'>{{$assessment->data->A_TOTAL}}/25</span>
+        <span style='font-size:12.0pt'>  /25</span>
       </p>
     </td>
   </tr>
@@ -279,9 +264,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B1 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -302,9 +284,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B2 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -325,9 +304,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B3 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -348,9 +324,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B4 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -371,9 +344,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B5 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -394,9 +364,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B6 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -417,9 +384,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->B7 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -442,7 +406,7 @@
         <span style='font-size:11.5pt'>&nbsp;</span>
       </p>
       <p class=TableParagraph align=right style='margin-top:.05pt;margin-right:4.65pt;margin-left:0cm;margin-bottom:.0001pt;text-align: right'>
-        <span style='font-size:12.0pt'>{{$assessment->data->B_TOTAL}}/35</span>
+        <span style='font-size:12.0pt'>  /35</span>
       </p>
     </td>
   </tr>
@@ -493,9 +457,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->C1 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -516,9 +477,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->C2 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -539,9 +497,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->C3== $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -562,9 +517,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->C4 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -585,9 +537,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->C5 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -610,7 +559,7 @@
         <span style='font-size:11.5pt'>&nbsp;</span>
       </p>
       <p class=TableParagraph align=right style='margin-top:.05pt;margin-right:4.65pt;margin-left:0cm;margin-bottom:.0001pt;text-align: right'>
-        <span style='font-size:12.0pt'>{{$assessment->data->C_TOTAL}}/25</span>
+        <span style='font-size:12.0pt'>  /25</span>
       </p>
     </td>
   </tr>
@@ -660,9 +609,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->D1 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -683,9 +629,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->D2 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -706,9 +649,6 @@
     <td width=31 valign=top style='width:23.35pt;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;height:13.75pt'>
       <p class=TableParagraph align=center style='margin-left:.2pt;text-align:center;line-height:12.8pt'>
         <span style='font-size:12.0pt'>
-          @if ($assessment->data->D3 == $i )
-            <strong>/</strong>
-          @endif
         </span>
       </p>
     </td>
@@ -731,7 +671,7 @@
         <span style='font-size:11.5pt'>&nbsp;</span>
       </p>
       <p class=TableParagraph align=right style='margin-top:.05pt;margin-right:4.65pt;margin-left:0cm;margin-bottom:.0001pt;text-align: right'>
-        <span style='font-size:12.0pt'>{{$assessment->data->D_TOTAL}}/15</span>
+        <span style='font-size:12.0pt'>  /15</span>
       </p>
     </td>
   </tr>
@@ -748,7 +688,7 @@
       </strong>
     </td>
     <td style="padding: 20px;border:solid black 1pt;width:40%;text-align: center;">
-      <strong>{{$assessment->data->OVERALL_MARK}}/100</strong>
+      <strong>  /100</strong>
     </td>
   </tr>
 </table>
@@ -776,7 +716,7 @@
     </td>
     <td style="padding: 20px;">:</td>
     <td style="padding: 20px;border-bottom:solid black 0.5pt;width:100%">
-      <strong>{{$assessment->examiner->profile->name}}</strong>
+      <strong>{{Auth::user()->profile->name }}</strong>
     </td>
   </tr>
   <tr>

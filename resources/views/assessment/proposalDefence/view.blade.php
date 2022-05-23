@@ -21,7 +21,7 @@
             </ul>
         </div>
     @endif
-    @if ( $assessment->examiner->id == Auth::user()->profile->examiner->id)
+    @if ( $assessment->examiner->profile->user->id == Auth::user()->id  )
     <a class="btn btn-primary" href="{{route('assessment.edit', $assessment)}}" role="button">Edit Assessment</a>
     @endif
     <div class="card shadow">
@@ -80,9 +80,6 @@
         <div class="card-body">
             <form method="POST" action="">
             @csrf
-                <!-- Hidden Form attributes -->
-                <input class="form-control" type="text" id="examiner_id" name="examiner_id" value="{{ Auth::user()->profile->examiner->id}}" hidden>
-                <input class="form-control" type="text" id="session_id" name="session_id" value="{{ $assessment->session->id }}" hidden>
             <div class="row">
                 <div class="col-xl-8">
                     <label class="form-label" for="A1">

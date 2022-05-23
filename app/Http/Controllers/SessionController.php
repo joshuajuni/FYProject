@@ -65,15 +65,17 @@ class SessionController extends Controller
         $request->merge(['created_by' => Auth::user()->id]);
         $session = Session::create($request->all());
 
-        $path = $request->file('file')->storeAs('proposals', $session->student->profile->user->username.'_proposal.pdf', 'public');
+        if (isset($request->file)) {
+            $path = $request->file('file')->storeAs('proposals', $session->student->profile->user->username.'_proposal.pdf', 'public');
 
-        $request->merge([
-            'session_id'    => $session->id,
-            'title'         => $request->proposal_title,
-            'path'          => $path
-        ]);
+            $request->merge([
+                'session_id'    => $session->id,
+                'title'         => $request->proposal_title,
+                'path'          => $path
+            ]);
 
-        Proposal::create($request->all());
+            Proposal::create($request->all());
+        }
 
         $users = [
             $session->student->profile->user,
@@ -146,7 +148,7 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-           Notification::send($user, new SessionUpdateNotification($sessionData));
+           // Notification::send($user, new SessionUpdateNotification($sessionData));
         }
         return redirect()->route('session.index')->with('success', 'Session updated successfully!');
     }
