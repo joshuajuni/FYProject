@@ -108,159 +108,195 @@
       <tr style="padding: 7px;border-left:solid black 1pt;border-right:solid black 1pt;">
         <td>
           <table style="padding: 5px;">
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1I == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Arguments are not clear/incorrect</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1I == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Arguments are partially clear and need to be refined</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1I == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Arguments are clearly presented</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1II == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Problem statements are not clearly stated</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1II == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Problem statements are adequate but need to be refined</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1II == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+                </td>
+              <td style="width: 30.33%">
                 <label>Problem statements are clearly stated</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1III == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Objectives are not clearly defined</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1III == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Objectives are clear but need to be refined</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1III == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Objectives are well defined</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1IV == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Does not reflect the understanding of subject matter and associated literature</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1IV == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Reflects understanding of subject matter and related literature</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1IV == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Exhibits mastery of subject matter and relevant literature</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1V == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Demonstrates an elementary understanding of theoretical concepts</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1V == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Demonstrates an adequate knowledge of theoretical concepts</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1V == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Demonstrates mastery of theoretical concepts</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B1VI == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The methodology is unorganised and lack of explanation</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B1VI == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The methodology is adequately explained</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B1VI == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The methodology is clearly explained and well organised</label>
               </td>
             </tr>
@@ -281,107 +317,131 @@
       <tr style="padding: 7px;border-left:solid black 1pt;border-right:solid black 1pt;">
         <td>
           <table style="padding: 5px;">
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B2I == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Writing is weak</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B2I == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Writing is adequate</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B2I == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Writing is clear and effectively communicated idea</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B2II == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Numerous grammatical and spelling errors apparent</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B2II == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Some grammatical and spelling errors apparent</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B2II == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>No grammatical or spelling errors</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B2III == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Organisation is poor</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B2III == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Organisation is logical</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B2III == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Organisation is excellent</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->B2IV == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Reference format is problematic</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->B2IV == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Reference contains few formatting errors</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->B2IV == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Reference is well-formatted</label>
               </td>
             </tr>
@@ -418,107 +478,131 @@
       <tr style="padding: 7px;border-left:solid black 1pt;border-right:solid black 1pt;">
         <td>
           <table style="padding: 5px;">
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->C1I == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Presentation unacceptable</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->C1I == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Presentation acceptable</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->C1I == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Presentation outstanding</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->C1II == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation does not reflect well developed critical thinking skills</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->C1II == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation reveals above average critical thinking skills</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->C1II == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation reveals well developed critical thinking skills</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->C1III == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation reveals critical weaknesses in-depth of knowledge in the subject matter</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->C1III == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation reveals some depth of knowledge in the subject matter</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->C1III == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>The presentation reveals an exceptional depth of subject knowledge</label>
               </td>
             </tr>
-            <tr style="padding: 7px;border:solid black 1pt;">
-              <td style="width: 33.33%">
+            <tr style="padding: 7px;border:solid black 1pt;vertical-align:top">
+              <td style="width: 3%">
                 <input type="checkbox" value="1"
                   <?php if ($assessment->data->C1IV == 1 ): ?>
                       checked
                   <?php endif ?> 
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Responses to questions are incomplete</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="2"
                   <?php if ($assessment->data->C1IV == 2 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Responses to questions are partially complete and require assistance</label>
               </td>
-              <td style="width: 33.33%">
+              <td style="width: 3%">
                 <input type="checkbox" value="3"
                   <?php if ($assessment->data->C1IV == 3 ): ?>
                       checked
                   <?php endif ?>
                 >
+              </td>
+              <td style="width: 30.33%">
                 <label>Responses are complete</label>
               </td>
             </tr>
