@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Blank')
+@section('title', 'REPORT OF RIGOROUS ASSESSMENT')
 
 @section('content')
 

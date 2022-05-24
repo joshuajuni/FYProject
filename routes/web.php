@@ -104,4 +104,8 @@ Route::middleware('auth', 'adminOrSupervisor')->prefix('/student')->as('student.
     Route::middleware('admin')->get('/makeActive/{student}', [StudentController::class, 'makeActive'])->name('makeActive');
 });
 
-Auth::routes();
+Auth::routes([
+  'register' => false, // Registration Routes...
+  'verify' => false, // Email Verification Routes...
+  'confirm' => false,
+]);

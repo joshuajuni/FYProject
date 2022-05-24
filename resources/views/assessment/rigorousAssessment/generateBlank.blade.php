@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Generate Assessment Form (Blank)</title>
     <style>
       table {
         border-collapse: collapse;
