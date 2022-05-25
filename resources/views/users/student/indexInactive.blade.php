@@ -16,19 +16,23 @@
     <a class="btn btn-primary" href="{{route('student.create')}}" role="button">Add Student</a>
     @endif
     <div class="card shadow">
-        <div class="card-header py-3">
+        <div class="card-header">
             <div class="row">
                 <div class="col-md-6">
                     <p class="text-primary m-0 fw-bold">Student Listing</p>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-outline-success" href="{{route('student.index')}}" role="button">Active</a>
-                        <a class="btn btn-danger" role="button" disabled>Inactive</a>
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <input class="form-control" id="myInput" type="text" placeholder="Search..">
                 </div>
-            </div>  
+            </div>
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('student.index')}}">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="" disabled>Inactive</a>
+                </li>
+            </ul>
         </div>
         <div class="card-body">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
