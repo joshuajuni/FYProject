@@ -20,8 +20,15 @@ class SessionController extends Controller
     {
         if (isset(Auth::user()->profile->admin)) {
             $sessions = Session::all()->sortByDesc('date');
-        }
-        elseif (isset(Auth::user()->profile->supervisor)) {
+        }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
+            $students = Auth::user()->profile->supervisor->students->pluck('id');
+            $sessions = Session::whereIn('student_id', $students)
+                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
+                        ->orderBy('date')
+                        ->get();
+        }elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
             //return $students;
             $sessions = Session::whereIn('student_id',  $students)
@@ -45,6 +52,8 @@ class SessionController extends Controller
     {
         if (isset(Auth::user()->profile->student)) {
             $students = Student::where('id', Auth::user()->profile->student->id)->get();
+        }elseif (isset(Auth::user()->profile->supervisor)) {
+            $students = Auth::user()->profile->supervisor->students;
         }else {
             $students = Student::where('is_active', true)->get();
         }
@@ -61,6 +70,11 @@ class SessionController extends Controller
         }
         if ( ($request->examiner1_id == $request->chairperson_id) || ($request->examiner2_id == $request->chairperson_id)) {
             return back()->withErrors(['msg' => 'Chairperson cannot be one of the examiners']);
+        }
+        if (isset(Auth::user()->profile->examiner)) {
+            if ( $request->examiner1_id == Auth::user()->profile->examiner->id || $request->examiner2_id == Auth::user()->profile->examiner->id || $request->examiner_id == Auth::user()->profile->examiner->id ) {
+                return back()->withErrors(['msg' => 'You cannot be one of the examiners or chairperson']);
+            }
         }
         $request->merge(['created_by' => Auth::user()->id]);
         $session = Session::create($request->all());
@@ -106,6 +120,8 @@ class SessionController extends Controller
     {
         if (isset(Auth::user()->profile->student)) {
             $students = Student::where('id', Auth::user()->profile->student->id)->get();
+        }elseif (isset(Auth::user()->profile->supervisor)) {
+            $students = Auth::user()->profile->supervisor->students;
         }else {
             $students = Student::where('is_active', true)->get();
         }
@@ -120,6 +136,11 @@ class SessionController extends Controller
         }
         if ( ($request->examiner1_id == $request->chairperson_id) || ($request->examiner2_id == $request->chairperson_id)) {
             return back()->withErrors(['msg' => 'Chairperson cannot be one of the examiners']);
+        }
+        if (isset(Auth::user()->profile->examiner)) {
+            if ( $request->examiner1_id == Auth::user()->profile->examiner->id || $request->examiner2_id == Auth::user()->profile->examiner->id || $request->examiner_id == Auth::user()->profile->examiner->id ) {
+                return back()->withErrors(['msg' => 'You cannot be one of the examiners or chairperson']);
+            }
         }
         $session->update($request->all());
 

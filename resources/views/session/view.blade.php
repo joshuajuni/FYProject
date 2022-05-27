@@ -21,7 +21,8 @@
             </ul>
         </div>
     @endif
-    @if (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
+    @if ( (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
+    AND ($session->examiner1->profile->user->id != Auth::user()->id AND $session->examiner2->profile->user->id != Auth::user()->id AND $session->chairperson->profile->user->id != Auth::user()->id) )
     <a class="btn btn-primary" href="{{route('session.edit', $session)}}" role="button">Edit Session</a>
     @endif
     <div class="card shadow">

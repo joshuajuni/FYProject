@@ -24,6 +24,15 @@
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Examiner Info</p>
+            @if (isset($examiner->profile->supervisor))
+                <span class="badge bg-success">Has Supervisor Role</span>
+            @else
+                <form method="POST" action="{{ route('supervisor.store') }}">
+                @csrf
+                    <input class="form-control" type="email" id="email" name="email" value="{{ $examiner->profile->user->email }}" hidden>
+                    <button class="btn btn-primary btn-sm" type="submit">Add as Supervisor</button>
+                </form>
+            @endif
         </div>
         <div class="card-body">
             <form method="POST" action="{{route('examiner.update',$examiner)}}">

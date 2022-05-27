@@ -55,12 +55,20 @@ class SupervisorController extends Controller
             if(isset($profile->supervisor)){
                 Session::flash('error', 'Email has already been taken');
                 return back()->withInput();
+            }else if(isset($profile->admin)){
+                Session::flash('error', 'Entered email has a admin profile, please user another email');
+                return back()->withInput();
+            }else if(isset($profile->student)){
+                Session::flash('error', 'Email has a student profile please user another email');
+                return back()->withInput();
             }else{
-                $request->validate([
-                    'password' => 'required|confirmed|min:6',
-                    'username' => 'unique:users,username'
-                ]);
-                $request->merge(['password' => Hash::make($request->password)]);
+                if (isset($request->password)) {
+                    $request->validate([
+                        'password' => 'required|confirmed|min:6',
+                        'username' => 'unique:users,username'
+                    ]);
+                    $request->merge(['password' => Hash::make($request->password)]);
+                }
                 $profile->update($request->all());
                 $profile->user->update($request->all());
                 $request->merge(['profile_id' => $profile->id]);

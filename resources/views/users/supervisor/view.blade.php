@@ -10,6 +10,15 @@
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 fw-bold">Supervisor Info</p>
+            @if (isset($supervisor->profile->examiner))
+                <span class="badge bg-success">Has Examiner Role</span>
+            @else
+                <form method="POST" action="{{ route('examiner.store') }}">
+                @csrf
+                    <input class="form-control" type="email" id="email" name="email" value="{{ $supervisor->profile->user->email }}" hidden>
+                    <button class="btn btn-primary btn-sm" type="submit">Add as Examiner</button>
+                </form>
+            @endif
         </div>
         <div class="card-body">
             <form>

@@ -65,6 +65,7 @@
                         <span class="d-none d-lg-inline me-2 text-gray-600 small">
                             {{Auth::user()->profile->name}}
                         </span>
+                        <i class="fas fa-user-circle" aria-hidden="true"></i>
                         <!-- <img class="border rounded-circle img-profile" src="{{ asset('assets/img/avatars/avatar1.jpeg') }}"> -->
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">

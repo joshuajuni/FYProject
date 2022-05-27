@@ -10,7 +10,7 @@
     <link href="{{ asset('assets/fonts/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/fonts/fontawesome5-overrides.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/img/doge.png') }}" rel="shortcut icon">
+    <link href="{{ asset('assets/img/code-solid.svg') }}" rel="shortcut icon">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 

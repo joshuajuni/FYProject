@@ -54,6 +54,9 @@ class AdminController extends Controller
             if(isset($profile->admin)){
                 Session::flash('error', 'Email has already been taken');
                 return back()->withInput();
+            }else if( isset($profile->examiner) || isset($profile->supervisor)){
+                Session::flash('error', 'Entered email has a other profile (examiner/supervisor), please user another email');
+                return back()->withInput();
             }else{
                 $request->validate([
                     'password' => 'required|confirmed|min:6',

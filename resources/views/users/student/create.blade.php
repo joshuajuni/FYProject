@@ -36,7 +36,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="username">
-                        <strong>Matrix No.</strong>
+                        <strong>Matrix No.</strong> (For unconfirmed students please use a temporary username as matrix number)
                     </label>
                     <input class="form-control" type="text" id="username" name="username">
                 </div>
@@ -50,11 +50,15 @@
                     <label class="form-label" for="type">
                         <strong>Type</strong>
                     </label>
-                    <select id="type" class="form-select" name="type">
-                        <option selected disabled>--Select--</option>
-                        <option value="1">MSc</option>
-                        <option value="2">PhD</option>
-                    </select>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="1" required>
+                        <label class="form-check-label" for="type">MSc</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type" value="2" required>
+                        <label class="form-check-label" for="type">PhD</label>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="supervisor_id">
