@@ -172,7 +172,7 @@
                 OR
                 ( $session->chairperson->profile->user->id == Auth::user()->id AND $session->session_type == 2)
                 )
-                <a class="btn btn-primary" href="{{route('assessment.generateBlank',$session)}}" role="button">Generate Assessment Form(Blank)</a>
+                <a class="btn btn-primary" href="{{route('assessment.generateBlank',$session)}}" role="button" target="_blank">Generate Assessment Form(Blank)</a>
                 @endif
         </div>
         <div class="card-body">
@@ -202,7 +202,7 @@
                                     >
                                         Delete
                                     </a>
-                                    <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$row)}}">
+                                    <a class="btn btn-primary" role="button" href="{{route('assessment.generate',$row)}}" target="_blank">
                                         <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Assessment PDF
                                     </a>
                                     @endif
