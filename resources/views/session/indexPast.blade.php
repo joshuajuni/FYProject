@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Session Listing')
+@section('title', 'Session Listing - Past')
 
 @section('content')
 
@@ -27,10 +27,10 @@
             </div>
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="" disabled>Upcoming</a>
+                    <a class="nav-link" href="{{route('session.index')}}">Upcoming</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('session.indexPast')}}">Past</a>
+                    <a class="nav-link active" href="" disabled>Past</a>
                 </li>
             </ul>
         </div>

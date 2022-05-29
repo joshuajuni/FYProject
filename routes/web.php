@@ -26,6 +26,7 @@ Route::get('/send-reminder', [NotificationController::class, 'sendReminder']);
 
 Route::middleware('auth')->prefix('/session')->as('session.')->group(function(){
     Route::get('/', [SessionController::class, 'index'])->name('index');
+    Route::get('/past', [SessionController::class, 'indexPast'])->name('indexPast');
     Route::middleware('exceptExaminer')->get('/create', [SessionController::class, 'create'])->name('create');
     Route::middleware('exceptExaminer')->post('/store', [SessionController::class, 'store'])->name('store');
     Route::get('/view/{session}', [SessionController::class, 'view'])->name('view');

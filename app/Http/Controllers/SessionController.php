@@ -19,33 +19,67 @@ class SessionController extends Controller
     public function index()
     {
         if (isset(Auth::user()->profile->admin)) {
-            $sessions = Session::all()->sortByDesc('date');
+            $sessions = Session::where('date', '>=', Carbon::today())
+                        ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
             $sessions = Session::whereIn('student_id', $students)
                         ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
                         ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
                         ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->orderBy('date')
-                        ->get();
+                        ->where('date', '>=', Carbon::today())
+                        ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
             //return $students;
             $sessions = Session::whereIn('student_id',  $students)
-                        ->orderBy('date')
-                        ->get();
+                        ->where('date', '>=', Carbon::today())
+                        ->paginate(10);
         }elseif (isset(Auth::user()->profile->examiner)) {
             $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
                         ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
                         ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->orderBy('date')
-                        ->get();
+                        ->where('date', '>=', Carbon::today())
+                        ->paginate(10);
         }elseif (isset(Auth::user()->profile->student)) {
             $sessions = Session::where('student_id', Auth::user()->profile->student->id)
-                        ->orderBy('date')
-                        ->get();
+                        ->where('date', '>=', Carbon::today())
+                        ->paginate(10);
         }
         return view('session.index')->with('sessions', $sessions);
+    }
+
+    public function indexPast()
+    {
+        if (isset(Auth::user()->profile->admin)) {
+            $sessions = Session::where('date', '<', Carbon::today())
+                        ->paginate(10);
+        }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
+            $students = Auth::user()->profile->supervisor->students->pluck('id');
+            $sessions = Session::whereIn('student_id', $students)
+                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
+                        ->where('date', '<', Carbon::today())
+                        ->paginate(10);
+        }elseif (isset(Auth::user()->profile->supervisor)) {
+            $students = Auth::user()->profile->supervisor->students->pluck('id');
+            //return $students;
+            $sessions = Session::whereIn('student_id',  $students)
+                        ->where('date', '<', Carbon::today())
+                        ->paginate(10);
+        }elseif (isset(Auth::user()->profile->examiner)) {
+            $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
+                        ->where('date', '<', Carbon::today())
+                        ->paginate(10);
+        }elseif (isset(Auth::user()->profile->student)) {
+            $sessions = Session::where('student_id', Auth::user()->profile->student->id)
+                        ->where('date', '<', Carbon::today())
+                        ->paginate(10);
+        }
+        return view('session.indexPast')->with('sessions', $sessions);
     }
 
     public function create()
@@ -104,7 +138,7 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-            // Notification::send($user, new NewSessionNotification($sessionData));
+            Notification::send($user, new NewSessionNotification($sessionData));
         }
 
         return redirect()->route('session.index')->with('success', 'Session created successfully!');
@@ -169,7 +203,7 @@ class SessionController extends Controller
             'url'       => url('session/view', $session->id)
         ];
         foreach ($users as $user) {
-           // Notification::send($user, new SessionUpdateNotification($sessionData));
+           Notification::send($user, new SessionUpdateNotification($sessionData));
         }
         return redirect()->route('session.index')->with('success', 'Session updated successfully!');
     }
