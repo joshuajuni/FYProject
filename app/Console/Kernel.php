@@ -9,6 +9,16 @@ use App\Jobs\SessionReminder;
 class Kernel extends ConsoleKernel
 {
     /**
+     * Get the timezone that should be used by default for scheduled events.
+     *
+     * @return \DateTimeZone|string|null
+     */
+    protected function scheduleTimezone()
+    {
+        return 'Asia/Kuala_Lumpur';
+    }    
+
+    /**
      * Define the application's command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
