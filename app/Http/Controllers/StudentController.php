@@ -45,7 +45,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $supervisors = Supervisor::where('is_active', false)->get();
+        $supervisors = Supervisor::where('is_active', true)->get();
         return view('users.student.create')->with('supervisors', $supervisors);
     }
 
