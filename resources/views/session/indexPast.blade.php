@@ -66,7 +66,6 @@
                                     <a class="btn btn-primary" href="{{route('session.view',$row)}}" role="button">View</a>
                                     @if ( (isset(Auth::user()->profile->admin) || isset(Auth::user()->profile->student) || isset(Auth::user()->profile->supervisor))
                                     AND ($row->examiner1->profile->user->id != Auth::user()->id AND $row->examiner2->profile->user->id != Auth::user()->id AND $row->chairperson->profile->user->id != Auth::user()->id) )
-                                    <a class="btn btn-primary" href="{{route('session.edit',$row)}}" role="button">Edit</a>
                                     <a role="button" class="btn btn-primary"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal"

@@ -146,12 +146,17 @@ class SessionController extends Controller
 
     public function view(Session $session)
     {
-        $examinerIDs = $session->assessment->pluck('examiner_id'); //id of examiner that has done assessment
-        return view('session.view')->with('session', $session)->with('examinerIDs', $examinerIDs);
+        $today          =   Carbon::today();
+        $examinerIDs    =   $session->assessment->pluck('examiner_id'); //id of examiner that has done assessment
+        return view('session.view')->with('session', $session)->with('examinerIDs', $examinerIDs)->with('today', $today);
     }
 
     public function edit(Session $session)
     {
+        if ($session->date < Carbon::today()) {
+            return back()->withErrors(['msg' => 'You cannot edit past sessions']);
+        }
+
         if (isset(Auth::user()->profile->student)) {
             $students = Student::where('id', Auth::user()->profile->student->id)->get();
         }elseif (isset(Auth::user()->profile->supervisor)) {
