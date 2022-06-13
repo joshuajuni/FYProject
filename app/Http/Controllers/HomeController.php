@@ -34,28 +34,32 @@ class HomeController extends Controller
         }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
             $sessions = Session::where('date', '>=', Carbon::today())
-                        ->orWhereIn('student_id', $students)
-                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
+                        ->where(function($query) {
+                            $query->whereIn('student_id', $students)
+                            ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->orderBy('date')
                         ->get();
         }elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
             $sessions = Session::where('date', '>=', Carbon::today())
-                        ->orWhereIn('student_id', $students)
+                        ->whereIn('student_id', $students)
                         ->orderBy('date')
                         ->get();
         }elseif (isset(Auth::user()->profile->examiner)) {
             $sessions = Session::where('date', '>=', Carbon::today())
-                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
+                        ->where(function($query) {
+                            $query->where('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->orderBy('date')
                         ->get();
         }elseif (isset(Auth::user()->profile->student)) {
             $sessions = Session::where('date', '>=', Carbon::today())
-                        ->orWhere('student_id', Auth::user()->profile->student->id)
+                        ->where('student_id', Auth::user()->profile->student->id)
                         ->orderBy('date')
                         ->get();
         }

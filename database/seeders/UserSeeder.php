@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('email','admin@bma.com')->first();
+        $user = User::where('email','admin@fyproject.com')->first();
         if(!isset($user)){
             $data = [
                 'username'     => 'Admin',
