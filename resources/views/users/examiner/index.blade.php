@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Examiner Listing</h3>
+    <h3 class="text-dark mb-4">Examiner</h3>
     @if (Session::has('error'))
         <div class="alert alert-danger" role="alert">{{ Session::get('error', '') }}</div>
     @endif

@@ -23,27 +23,30 @@ class SessionController extends Controller
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
-            $sessions = Session::whereIn('student_id', $students)
-                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->where('date', '>=', Carbon::today())
+            $sessions = Session::where('date', '>=', Carbon::today())
+                        ->where(function($query) {
+                            $query->whereIn('student_id', $students)
+                            ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
-            //return $students;
-            $sessions = Session::whereIn('student_id',  $students)
-                        ->where('date', '>=', Carbon::today())
+            $sessions = Session::where('date', '>=', Carbon::today())
+                        ->whereIn('student_id', $students)
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->examiner)) {
-            $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->where('date', '>=', Carbon::today())
+            $sessions = Session::where('date', '>=', Carbon::today())
+                        ->where(function($query) {
+                            $query->where('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->student)) {
-            $sessions = Session::where('student_id', Auth::user()->profile->student->id)
-                        ->where('date', '>=', Carbon::today())
+            $sessions = Session::where('date', '>=', Carbon::today())
+                        ->where('student_id', Auth::user()->profile->student->id)
                         ->paginate(10);
         }
         return view('session.index')->with('sessions', $sessions);
@@ -56,27 +59,30 @@ class SessionController extends Controller
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor) AND isset(Auth::user()->profile->examiner)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
-            $sessions = Session::whereIn('student_id', $students)
-                        ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->where('date', '<', Carbon::today())
+            $sessions = Session::where('date', '<', Carbon::today())
+                        ->where(function($query) {
+                            $query->whereIn('student_id', $students)
+                            ->orWhere('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->supervisor)) {
             $students = Auth::user()->profile->supervisor->students->pluck('id');
-            //return $students;
-            $sessions = Session::whereIn('student_id',  $students)
-                        ->where('date', '<', Carbon::today())
+            $sessions = Session::where('date', '<', Carbon::today())
+                        ->whereIn('student_id', $students)
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->examiner)) {
-            $sessions = Session::where('examiner1_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
-                        ->orWhere('chairperson_id', Auth::user()->profile->examiner->id)
-                        ->where('date', '<', Carbon::today())
+            $sessions = Session::where('date', '<', Carbon::today())
+                        ->where(function($query) {
+                            $query->where('examiner1_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('examiner2_id', Auth::user()->profile->examiner->id)
+                            ->orWhere('chairperson_id', Auth::user()->profile->examiner->id);
+                        })
                         ->paginate(10);
         }elseif (isset(Auth::user()->profile->student)) {
-            $sessions = Session::where('student_id', Auth::user()->profile->student->id)
-                        ->where('date', '<', Carbon::today())
+            $sessions = Session::where('date', '<', Carbon::today())
+                        ->where('student_id', Auth::user()->profile->student->id)
                         ->paginate(10);
         }
         return view('session.indexPast')->with('sessions', $sessions);
